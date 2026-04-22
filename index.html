@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ops — Lebané MX · Onboarding + Mes 1</title>
+<style>
+:root{
+  --bg:#1A1D1F;--card:#282C2F;--sand:#B89C84;--ocean:#26465F;--sky:#A2B4C0;
+  --white:#FFFBF9;--gold:#876B46;--taupe:#9C918B;--green:#5A9A6B;--red:#C75050;
+  --line:rgba(255,255,255,.06);--t1:#FFFBF9;--t2:rgba(255,251,249,.6);--t3:rgba(255,251,249,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--t1);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;line-height:1.5;padding:44px 36px 64px;min-height:100vh}
+
+/* header */
+.hdr{margin-bottom:28px}
+.hdr .ey{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sand);margin-bottom:8px}
+.hdr h1{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:4px}
+.hdr .sub{font-size:14px;color:var(--t2)}
+
+/* legend */
+.leg{display:flex;gap:18px;margin-bottom:24px;flex-wrap:wrap}
+.leg-i{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t2)}
+.leg-s{width:14px;height:7px;border-radius:2px}
+
+/* progress */
+.prog{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.pb{background:var(--card);border-radius:7px;padding:10px 14px;min-width:110px;flex:1}
+.pb-l{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:5px}
+.pb-bg{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:3px}
+.pb-f{height:100%;border-radius:3px;width:0%;transition:width .4s}
+.pb-c{font-size:11px;color:var(--t2)}
+
+/* tabs */
+.tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+.tab{font-family:inherit;font-size:12px;font-weight:600;padding:9px 18px;background:none;border:none;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s}
+.tab:hover{color:var(--t2)}.tab.on{color:var(--sand);border-bottom-color:var(--sand)}
+.tp{display:none}.tp.on{display:block}
+
+/* gantt */
+.g-wrap{overflow-x:auto;border-radius:7px;border:1px solid var(--line)}
+.g{display:grid;min-width:900px;grid-template-columns:220px 1fr}
+.g .ch-l{padding:8px 12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);background:var(--card);border-bottom:1px solid var(--line)}
+.g .ch-t{background:var(--card);border-bottom:1px solid var(--line);border-left:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr)}
+.g .wh{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 2px;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);border-right:1px solid var(--line);gap:1px}
+.g .wh:last-child{border-right:none}.g .wh span{font-weight:400;color:var(--t3);font-size:8px}
+.g .ph{grid-column:1/-1;display:grid;grid-template-columns:220px 1fr;background:var(--card);border-bottom:1px solid var(--line)}
+.g .ph-l{padding:7px 12px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.g .ph-l .d{width:7px;height:7px;border-radius:50%}
+.g .ph-t{border-left:1px solid var(--line)}
+.g .gr{display:contents}.g .gr:hover .gl,.g .gr:hover .gt{background:rgba(255,255,255,.02)}
+.g .gl{padding:5px 12px;font-size:11px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:5px;transition:background .1s}
+.g .gt{border-left:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;height:28px;display:grid;grid-template-columns:repeat(30,1fr);align-items:center;transition:background .1s}
+.g .gt::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent calc(100%/6*1 - .5px),var(--line) calc(100%/6*1 - .5px),var(--line) calc(100%/6*1 + .5px),transparent calc(100%/6*1 + .5px)),linear-gradient(90deg,transparent calc(100%/6*2 - .5px),var(--line) calc(100%/6*2 - .5px),var(--line) calc(100%/6*2 + .5px),transparent calc(100%/6*2 + .5px)),linear-gradient(90deg,transparent calc(100%/6*3 - .5px),var(--line) calc(100%/6*3 - .5px),var(--line) calc(100%/6*3 + .5px),transparent calc(100%/6*3 + .5px)),linear-gradient(90deg,transparent calc(100%/6*4 - .5px),var(--line) calc(100%/6*4 - .5px),var(--line) calc(100%/6*4 + .5px),transparent calc(100%/6*4 + .5px)),linear-gradient(90deg,transparent calc(100%/6*5 - .5px),var(--line) calc(100%/6*5 - .5px),var(--line) calc(100%/6*5 + .5px),transparent calc(100%/6*5 + .5px))}
+.g .b{height:6px;border-radius:2px;z-index:2;position:relative}
+.g .b[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--card);color:var(--t1);padding:3px 6px;border-radius:3px;font-size:9px;white-space:nowrap;z-index:10;pointer-events:none;border:1px solid var(--line)}
+.b-r{background:var(--sand)}.b-j{background:var(--ocean)}.b-rj{background:var(--gold)}.b-m{background:var(--taupe)}
+.g .ml{width:7px;height:7px;border-radius:2px;transform:rotate(45deg);z-index:3;justify-self:center}
+.g .ow{font-size:8px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 5px;border-radius:2px;white-space:nowrap;flex-shrink:0}
+.ow-r{background:rgba(184,156,132,.2);color:var(--sand)}.ow-j{background:rgba(38,70,95,.4);color:var(--sky)}
+.ow-rj{background:rgba(135,107,70,.25);color:var(--gold)}.ow-m{background:rgba(156,145,139,.25);color:var(--taupe)}
+
+/* gantt summary strip */
+.g-summary{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.gs-block{background:var(--card);border-radius:6px;padding:10px 14px;flex:1;min-width:120px}
+.gs-block__label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.gs-block__pills{display:flex;gap:4px;flex-wrap:wrap}
+.gs-pill{font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px}
+
+/* checklist */
+.phase{margin-bottom:32px}
+.phase-h{display:flex;align-items:center;gap:9px;margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.phase-d{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.phase-t{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.phase-dt{font-size:11px;color:var(--t3);margin-left:auto}
+.phase-count{font-size:11px;color:var(--t3);margin-left:8px}
+.cat{margin-bottom:18px}
+.cat-l{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:9px;padding-left:4px}
+
+.it{display:grid;grid-template-columns:26px 1fr auto auto;align-items:center;gap:5px;padding:7px 5px;border-radius:4px;transition:background .1s}
+.it:hover{background:rgba(255,255,255,.02)}
+.it+.it{border-top:1px solid var(--line)}
+.it input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:17px;height:17px;border:2px solid rgba(255,255,255,.15);border-radius:3px;background:transparent;cursor:pointer;position:relative;transition:.15s}
+.it input[type="checkbox"]:checked{background:var(--green);border-color:var(--green)}
+.it input[type="checkbox"]:checked::after{content:'';position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid var(--white);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.it.done .it-t{opacity:.3;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.12)}
+.it-c{display:flex;flex-direction:column;gap:1px;min-width:0}
+.it-t{font-size:12px;transition:opacity .15s}
+.it-det{font-size:10px;color:var(--t3);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it-det.expanded{white-space:normal}
+
+/* selects */
+.sel{font-family:inherit;font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:none;border-radius:3px;padding:3px 6px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='rgba(255,251,249,.35)'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:14px;transition:.15s}
+.sel-phase{background-color:rgba(255,255,255,.06);color:var(--t2)}
+.sel-owner{min-width:62px}
+.sel option{background:var(--card);color:var(--t1)}
+
+/* owner select colors */
+.sel-owner[data-val="r"]{background:rgba(184,156,132,.2);color:var(--sand)}
+.sel-owner[data-val="j"]{background:rgba(38,70,95,.4);color:var(--sky)}
+.sel-owner[data-val="rj"]{background:rgba(135,107,70,.25);color:var(--gold)}
+.sel-owner[data-val="m"]{background:rgba(156,145,139,.25);color:var(--taupe)}
+
+/* changed indicator */
+.sel.changed{box-shadow:0 0 0 1.5px var(--sand)}
+
+/* notes */
+.notes{margin-top:8px;padding:9px 12px;background:var(--card);border-radius:5px;border-left:3px solid var(--sand)}
+.notes-l{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:3px}
+.notes textarea{width:100%;min-height:36px;background:transparent;border:none;color:var(--t2);font-family:inherit;font-size:12px;line-height:1.5;resize:vertical;outline:none}
+.notes textarea::placeholder{color:var(--t3)}
+
+/* empty phase message */
+.phase-empty{font-size:12px;color:var(--t3);padding:12px 8px;font-style:italic}
+
+/* footer */
+.ft{margin-top:44px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.ft-l{font-size:11px;color:var(--t3)}
+.btn{font-family:inherit;font-size:11px;font-weight:600;padding:7px 13px;border-radius:5px;border:none;cursor:pointer;transition:.15s}
+.btn-s{background:var(--card);color:var(--t2)}.btn-s:hover{background:rgba(255,255,255,.1);color:var(--t1)}
+.btn-p{background:var(--sand);color:var(--card)}.btn-p:hover{filter:brightness(1.1)}
+.ft-a{display:flex;gap:5px}
+
+@media(max-width:700px){body{padding:20px 14px}.it{grid-template-columns:22px 1fr auto auto}.prog{flex-direction:column}}
+@media print{body{background:#fff;color:#111;padding:18px}.it-t,.phase-t{color:#111}.it-det,.phase-dt{color:#555}.cat-l{color:#876B46}.phase-h{border-color:#ddd}.notes{background:#f5f5f5;border-color:#999}.ft-a,.tabs{display:none}.tp{display:block!important}.g-wrap{border-color:#ddd}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="ey">Lebané x The Creative Lever — Documento operativo</div>
+  <h1>Onboarding + Ejecución Mes 1</h1>
+  <div class="sub">Tier 2 Growth MX · Abr 21 → May 29, 2026</div>
+</div>
+
+<div class="leg">
+  <div class="leg-i"><div class="leg-s" style="background:var(--sand)"></div>Ramiro</div>
+  <div class="leg-i"><div class="leg-s" style="background:var(--ocean)"></div>Justo</div>
+  <div class="leg-i"><div class="leg-s" style="background:var(--gold)"></div>R + J</div>
+  <div class="leg-i"><div class="leg-s" style="background:var(--taupe)"></div>Martín</div>
+</div>
+
+<div class="prog" id="progress"></div>
+
+<div class="tabs">
+  <button class="tab on" data-tab="gantt">Timeline</button>
+  <button class="tab" data-tab="checklist">Checklist</button>
+</div>
+
+<div class="tp on" id="tab-gantt">
+  <div class="g-wrap">
+    <div class="g">
+      <div class="ch-l">Fase</div>
+      <div class="ch-t">
+        <div class="wh">Pre-start A<span>Abr 21-25</span></div>
+        <div class="wh">Pre-start B<span>Abr 28-30</span></div>
+        <div class="wh">S1 Diagnóstico<span>May 4-8</span></div>
+        <div class="wh">S2 Setup<span>May 11-15</span></div>
+        <div class="wh">S3 Producción<span>May 18-22</span></div>
+        <div class="wh">S4 Iteración<span>May 25-29</span></div>
+      </div>
+      <!-- Phase bars -->
+      <div class="gr"><div class="gl" style="font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--taupe)">Pre-Start</div><div class="gt"><div class="b b-r" style="grid-column:1/9;opacity:.7" data-tip="Abr 21-30 · Sin accesos"></div></div></div>
+      <div class="gr"><div class="gl" style="font-weight:700;color:var(--red);font-size:10px">↳ Deadline accesos</div><div class="gt"><div class="ml" style="grid-column:8/9;background:var(--red)" data-tip="JUE Abr 30 23:59 GMT-6"></div></div></div>
+      <div class="gr"><div class="gl" style="font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sky)">S1 — Diagnóstico</div><div class="gt"><div class="b b-j" style="grid-column:9/14;height:8px" data-tip="May 4-8 · Auditorías + kickoff"></div></div></div>
+      <div class="gr"><div class="gl" style="font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sky)">S2 — Setup</div><div class="gt"><div class="b b-j" style="grid-column:14/17" data-tip="May 11-13 · Justo: tracking + HubSpot"></div><div class="b b-r" style="grid-column:14/19" data-tip="May 11-15 · Ramiro: Comms Strategy + pillars"></div></div></div>
+      <div class="gr"><div class="gl" style="font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sand)">S3 — Producción</div><div class="gt"><div class="b b-r" style="grid-column:19/24;height:8px" data-tip="May 18-22 · Batch 1 + orgánico + video briefs"></div><div class="b b-j" style="grid-column:19/24;margin-top:2px" data-tip="May 18-22 · Reestructuración campañas"></div></div></div>
+      <div class="gr"><div class="gl" style="font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">S4 — Iteración</div><div class="gt"><div class="b b-r" style="grid-column:24/29;height:8px" data-tip="May 25-29 · Batch 2 + sales enablement"></div><div class="b b-j" style="grid-column:24/29;margin-top:2px" data-tip="May 25-29 · A/B testing + optimización"></div></div></div>
+      <div class="gr"><div class="gl" style="font-weight:700;font-size:10px;color:var(--gold)">↳ Cierre mes 1</div><div class="gt"><div class="ml" style="grid-column:28/29;background:var(--gold)" data-tip="VIE May 29 · Working session + plan mes 2"></div></div></div>
+    </div>
+  </div>
+  <div class="g-summary" id="gantt-summary"></div>
+</div>
+
+<div class="tp" id="tab-checklist">
+  <div id="checklist-root"></div>
+</div>
+
+<div class="ft">
+  <div class="ft-l">The Creative Lever — Automation + criterio · 2026-04-21</div>
+  <div class="ft-a">
+    <button class="btn btn-s" onclick="resetAll()">Reset</button>
+    <button class="btn btn-p" id="save-btn" onclick="saveState()">Guardar</button>
+  </div>
+</div>
+
+<script>
+// ═════════════════════════════════════════════════════════
+// DATA
+// ═════════════════════════════════════════════════════════
+const PHASES = [
+  {id:'pre',label:'Fase Pre-Start',dates:'Abr 21-30',color:'var(--taupe)',dot:'var(--taupe)'},
+  {id:'s1',label:'S1 — Diagnóstico + Kickoff',dates:'May 4-8',color:'var(--ocean)',dot:'var(--ocean)'},
+  {id:'s2',label:'S2 — Setup Técnico + Estrategia',dates:'May 11-15',color:'var(--sky)',dot:'var(--sky)'},
+  {id:'s3',label:'S3 — Primera Producción',dates:'May 18-22',color:'var(--sand)',dot:'var(--sand)'},
+  {id:'s4',label:'S4 — Iteración + Learning Loop',dates:'May 25-29',color:'var(--gold)',dot:'var(--gold)'}
+];
+
+const OWNERS = {r:'Ramiro',j:'Justo',rj:'R + J',m:'Martín'};
+
+const CATS = {
+  com:'Comunicación + alineación',acc:'Accesos (deadline JUE 2026-04-30)',inp:'Recolección de inputs',res:'Research',prep:'Preparación de producción',
+  kick:'Kickoff','aud-ads':'Auditoría cuentas publicitarias','aud-hub':'Auditoría HubSpot / CRM',
+  'aud-track':'Verificación de tracking','aud-web':'Auditoría web',brand:'Brand assets + identidad visual',
+  consol:'Consolidación','fix-track':'Correcciones de tracking','ga4-hub':'Integración GA4 ↔ HubSpot',
+  'fix-hub':'Correcciones HubSpot',strat:'Estrategia de comunicación',deliver:'Entrega',
+  creative:'Producción creativa',paid:'Paid media',report:'Reporting',close:'Reporting + cierre de mes'
+};
+
+// [id, text, detail, defaultPhase, defaultOwner, category]
+const RAW = [
+// PRE
+['p01','Enviar mensaje a Martín: accesos + inputs + propuesta kickoff','Deadline: MIÉ 2026-04-23 18:00 GMT-3. Justo en copia.','pre','r','com'],
+['p02','Alineación interna con Justo — roles, proceso, herramientas','Definir quién hace qué. Expectativas de S1. HECHO 2026-04-22.','pre','rj','com'],
+['p12','Justo: revisar borrador contrato antes de envío','MSA + SOW + Anexo Comisión Variable. Feedback antes de mandar a Martín.','pre','j','com'],
+['p13','Preguntar a Martín si trabaja 1/5 — proponer adelantar kickoff','Si no trabaja, mover kickoff a MIÉ 30/04. Ramiro off VIE 25/04.','pre','r','com'],
+['a01','Meta Business Suite — gestión de cuentas publicitarias','Martín → IT Lebané. Receptor: Justo + Ramiro.','pre','m','acc'],
+['a02','Google Ads — acceso de gestión','Martín → IT Lebané. Receptor: Justo.','pre','m','acc'],
+['a03','LinkedIn Campaign Manager — admin o gestión','Martín → IT Lebané. Receptor: Justo + Ramiro.','pre','m','acc'],
+['a04','HubSpot — acceso operativo (marketing + reporting)','Martín otorga. Receptor: Justo + Ramiro.','pre','m','acc'],
+['a05','Google Tag Manager — editor','Martín → IT Lebané. Receptor: Justo.','pre','m','acc'],
+['a06','Google Analytics 4 — editor o analyst','Martín → IT Lebané. Receptor: Justo + Ramiro.','pre','m','acc'],
+['a07','Plataforma Lebané — cuenta demo o acceso de prueba','Para conocer el producto de primera mano. Receptor: Ramiro + Justo.','pre','m','acc'],
+['a08','Creatividades actuales — carpeta compartida o link a biblioteca','Ads, orgánico, sales enablement de agencia actual. Receptor: Ramiro + Justo.','pre','m','acc'],
+['a09','Brand assets — logos, tipografías, screenshots UI','Carpeta compartida o link. Receptor: Ramiro.','pre','m','acc'],
+['a10','Grupo WhatsApp/Slack — comunicación en vivo','Ramiro crea. Agrega a Justo + Martín.','pre','r','acc'],
+['a11','Justo: crear cuenta madre agencia (Google + Meta)','Para gestionar accesos a escala. Queda armado para futuros clientes.','pre','j','acc'],
+['p03','Pattern library de Martín (1,165+ calls)','Qué cierra deals, qué los mata, qué pain points convierten. Input A.','pre','m','inp'],
+['p04','Keyword analysis de Google Ads','Categorización pause/review/add. Input B.','pre','m','inp'],
+['p05','Data ICPs MX (surveys, call notes, segmentación)','Mensajes por segmento: Organizer vs Controller. Input C.','pre','m','inp'],
+['p06','Ad spend mensual MX por plataforma','Cuánto gastan en Meta vs Google vs LinkedIn. Pedir en mail de hoy. Input F.','pre','m','inp'],
+['p14','Pedir a Lebané lo que están trabajando en la web nueva','Están cambiando la página. Necesitamos lo que tengan para dar feedback en el audit.','pre','m','inp'],
+['p07','Competitive landscape — comunicación competidores MX','Ads, LinkedIn, web. Huecos de mensaje.','pre','r','res'],
+['p08','Auditoría web + producto Lebané (público)','Estado actual vs audit previo. Foco landing MX y mobile.','pre','r','res'],
+['p09','Token extract — colores, tipografías, patrones visuales','Base para producción de creativos.','pre','r','prep'],
+['p10','Content pillars v0 — hipótesis OKRs + ICPs','Draft inicial. Se refina en S1. Compartir con Justo para validación stats.','pre','r','prep'],
+['p11','Preparar agenda kickoff + doc de alineación','Roadmap 4 semanas + expectativas + qué necesitamos de Martín.','pre','r','prep'],
+['p15','Investigar herramientas AI video (ElevenLabs, etc.)','Para producción de piezas paid con video generado por AI. Expectativa de Martín.','pre','r','prep'],
+['p16','Contactar sound designer (amigo de Ascend) para voces/audio','Consultar sobre obtención de voces MX y buen audio para videos AI.','pre','r','prep'],
+['p17','Armar estructura nomenclatura creativos (audiencia × problema/beneficio)','MD file con framework: a quién le hablamos + qué dolor/beneficio. Base para iterar.','pre','r','prep'],
+// S1
+['s101','Kickoff session con Martín (60-90 min)','Expectativas · prioridades Q2 · inputs · paid media · canales · influencer + eventos.','s1','rj','kick'],
+['s102','Definir canal de comunicación (WhatsApp/Slack)','Reacción inmediata a performance.','s1','r','kick'],
+['s103','Confirmar inputs recibidos (A-I)','Pattern library · keywords · ICPs · calendario · influencer · ad spend · reporting · eventos · LinkedIn.','s1','rj','kick'],
+['s104','Meta Ads — estructura campañas, conjuntos, ads activos','Mapear por objetivo, audiencia, mercado MX vs AR.','s1','j','aud-ads'],
+['s105','Meta Ads — audiencias (custom, lookalike, intereses)','Calidad de segmentación. Solapamiento.','s1','j','aud-ads'],
+['s106','Meta Ads — creativos: formatos, copies, rotación','Top performers y creativos muertos.','s1','j','aud-ads'],
+['s107','Meta Ads — performance: CPL, CTR, CPA','Baseline. Cruzar con calidad de lead en HubSpot.','s1','j','aud-ads'],
+['s108','Google Ads — estructura, grupos, match types','Search, PMax, Display. ¿Optimización granular?','s1','j','aud-ads'],
+['s109','Google Ads — keywords, negativas, quality score','Cruzar con keyword analysis de Martín.','s1','j','aud-ads'],
+['s110','Google Ads — performance: CPC, CTR, conversiones','Oportunidades de keyword sin competencia.','s1','j','aud-ads'],
+['s111','LinkedIn Ads — estado, estructura, segmentación','Si no hay campañas, documentar para S3.','s1','j','aud-ads'],
+['s112','Distribución ad spend por plataforma y mercado','Meta vs Google vs LinkedIn. MX vs AR.','s1','j','aud-ads'],
+['s113','Pipeline: stages, definiciones, deal properties','Greenfield. Qué armaron, qué falta.','s1','j','aud-hub'],
+['s114','Fuentes de leads: atribución, campos UTM','¿Se distingue Meta de Google de orgánico? ¿MX de AR?','s1','j','aud-hub'],
+['s115','Workflows activos: nurturing, asignación, notificaciones','Gaps: ej. no hay nurturing post-lead.','s1','j','aud-hub'],
+['s116','Calidad datos: duplicados, campos vacíos, segmentación','Base ~2,500 leads. ¿Se puede segmentar?','s1','j','aud-hub'],
+['s117','Velocidad de respuesta a leads entrantes','Tiempo ingreso → primer contacto comercial.','s1','j','aud-hub'],
+['s118','Píxel de Meta — instalado y disparando','Events Manager. Eventos estándar y custom.','s1','j','aud-track'],
+['s119','Tag de Google — instalado, conversiones','Verificar en Google Ads y GTM.','s1','j','aud-track'],
+['s120','LinkedIn Insight Tag','Si no hay tag, documentar para S2.','s1','j','aud-track'],
+['s121','UTMs — estructura actual, consistencia','¿Llegan a HubSpot?','s1','j','aud-track'],
+['s122','GA4 — eventos, conversiones, conexión Google Ads','Alineados a objetivos de negocio.','s1','j','aud-track'],
+['s123','Atribución GA4 ↔ HubSpot','Lead de Meta → ¿aparece con esa fuente en HS?','s1','j','aud-track'],
+['s124','Landing pages MX — flujo conversión','Landing → form → WhatsApp/demo. Puntos de fuga. Incluir lo que Lebané esté trabajando en web nueva.','s1','rj','aud-web'],
+['s125','CTAs y formularios — fricción','Audit previo: un solo CTA alta fricción.','s1','rj','aud-web'],
+['s126','Mobile — breakpoints, performance','Constructores e Inmobiliarias rotos en mobile.','s1','rj','aud-web'],
+['s127','Velocidad de carga — Core Web Vitals','Google penaliza landing lentas.','s1','rj','aud-web'],
+['s128','Brand assets recibidos (logos, tipo, screenshots UI)','Paquete completo para producción.','s1','r','brand'],
+['s129','Análisis identidad visual existente','Complementar token extract pre-start.','s1','r','brand'],
+['s130','Revisión creatividades actuales','Formatos, estética, nivel calidad. Benchmark.','s1','r','brand'],
+['s131','Cruce auditorías: Justo + audit previo','Unificar Research/Audit/ con diagnóstico nuevo.','s1','rj','consol'],
+['s132','Listado quick wins para S2','Correcciones sin producción nueva.','s1','rj','consol'],
+['s133','Listado blockers para S3','¿Falta algo que impida producción?','s1','rj','consol'],
+// S2
+['s201','Píxel Meta — corregir/reinstalar','Eventos: lead, demo agendada, WhatsApp click.','s2','j','fix-track'],
+['s202','Tag Google — corregir conversiones, vincular GA4','Conversiones reflejando funnel real.','s2','j','fix-track'],
+['s203','LinkedIn Insight Tag — instalar/verificar','Para retargeting y conversiones en S3.','s2','j','fix-track'],
+['s204','Estructura UTMs unificada','Formato estándar. Documentar convención.','s2','j','fix-track'],
+['s205','Test end-to-end: click → landing → form → HubSpot → atribución','Test real con UTMs en cada plataforma.','s2','j','fix-track'],
+['s206','Conexión GA4 → HubSpot','Implementar o verificar consistencia.','s2','j','ga4-hub'],
+['s207','Eventos GA4 → propiedades contacto HubSpot','Filtrar leads por fuente, campaña, landing.','s2','j','ga4-hub'],
+['s208','Conversiones GA4 alineadas a negocio','Lead capturado, demo agendada, WhatsApp.','s2','j','ga4-hub'],
+['s209','Pipeline stages — funnel real MX','Lead → SQL → demo → cliente.','s2','j','fix-hub'],
+['s210','Propiedades atribución: fuente, medio, campaña, mercado','Trazabilidad desde primer touch.','s2','j','fix-hub'],
+['s211','Segmentación MX vs AR','Propiedad o lista. Crítico para reporting.','s2','j','fix-hub'],
+['s212','Reportes base HubSpot','Dashboard: leads × fuente MX, pipeline velocity.','s2','j','fix-hub'],
+['s213','Comms Strategy v1 — posicionamiento MX, mensajes clave','Organizer + Controller. Pattern library + competitive. Necesaria S1: paid, orgánico y LinkedIn dependen de ella.','s1','r','strat'],
+['s214','Content pillars (3-5) + calendario temático mes 1','Pilares por semana. Mapeo a canales.','s2','r','strat'],
+['s215','LinkedIn — estrategia por perfil (Bruno + Roberto)','2 posts/semana. Tono, formato, temas.','s2','r','strat'],
+['s216','3 bases creativas por audiencia MX','Mensaje, visual, CTA. Input para Batch 1.','s2','r','strat'],
+['s217','Reporte diagnóstico consolidado a Martín','Auditoría + recomendaciones + plan. VIE 2026-05-15.','s2','rj','deliver'],
+['s218','Tracking operativo — confirmación','Píxeles, UTMs, GA4↔HS OK. Gate para S3.','s2','j','deliver'],
+['s219','Comms Strategy aprobada por Martín','Mensajes y pillars validados. Gate para producción.','s2','r','deliver'],
+// S3
+['s301','Paid — estáticos social proof (CEK, QUBE, HAB)','Logos existentes. Alto impacto CTR.','s3','r','creative'],
+['s302','Paid — Problem/Solution por segmento','Andromeda: creativo = segmentación.','s3','r','creative'],
+['s303','Paid — Before & After (Excel vs dashboard)','Visual, sin audio, alto CTR audiencia fría.','s3','r','creative'],
+['s304','Confirmar: 10 piezas batch 1 entregadas','Social proof + Problem/Solution + B&A.','s3','r','creative'],
+['s305','Brief influencer @roydpaterson — mes 1','Mensaje clave, formato, do\'s & don\'ts.','s3','r','creative'],
+['s306','Orgánico batch 1 — 6 piezas (LinkedIn + IG)','Bruno, Roberto, cuenta empresa. Content pillars.','s3','r','creative'],
+['s307','Video briefs P1 — Problem/Solution + Loom-style','Dirección creativa + guión + vendor.','s3','r','creative'],
+['s308','Meta Ads MX — reestructurar según diagnóstico','Campañas por segmento. Creativos Batch 1.','s3','j','paid'],
+['s309','Google Ads MX — keywords, negativos, match types','Aplicar keyword analysis. Pausar basura.','s3','j','paid'],
+['s310','LinkedIn Ads MX — setup o reestructurar','Segmentación B2B. Lead Gen Forms.','s3','j','paid'],
+['s311','Campañas live con creativos nuevos','Batch 1 en Meta + Google. Presupuesto distribuido.','s3','j','paid'],
+['s312','Reporte semanal #1','Performance. Alertas. Recomendaciones S4.','s3','j','report'],
+// S4
+['s401','Batch 2 paid — variantes basadas en performance S3','Iterar winners. Pausar low performers.','s4','r','creative'],
+['s402','Confirmar: 10 piezas batch 2 (completa 20/mes)','Variantes + formatos nuevos.','s4','r','creative'],
+['s403','Review output influencer @roydpaterson','Verificar brief respetado. Feedback pre-publicación.','s4','r','creative'],
+['s404','Orgánico batch 2 — 6 piezas (completa 12/mes)','Ajustar temas según engagement batch 1.','s4','r','creative'],
+['s405','Sales enablement template v1 — case study STAR','Template de diseño. Listo para llenar con data real.','s4','r','creative'],
+['s406','A/B testing — pausa low / escala winners','Creativos, copies, audiencias. Documentar.','s4','j','paid'],
+['s407','Batch 2 cargado en campañas activas','Creativos rotando. Presupuesto ajustado.','s4','j','paid'],
+['s408','Análisis competencia — reporte mensual','Creativos, keywords, posicionamiento MX.','s4','rj','close'],
+['s409','Reporte semanal #2','Performance + comparación vs semana anterior.','s4','j','close'],
+['s410','Reunión mensual resultados con Martín','Resultados vs objetivos. Ajustes mes 2.','s4','rj','close'],
+['s411','Working session (media jornada) — plan mes 2','4hs en oficina Lebané. NO lunes (Justo). Justo se puede sumar un rato.','s4','r','close'],
+];
+
+// Build items
+let items = RAW.map(r => ({id:r[0],text:r[1],detail:r[2],defPhase:r[3],phase:r[3],defOwner:r[4],owner:r[4],cat:r[5],checked:false}));
+let notes = {};
+
+// ═════════════════════════════════════════════════════════
+// RENDER
+// ═════════════════════════════════════════════════════════
+const KEY = 'ops-lebane-v3';
+const root = document.getElementById('checklist-root');
+
+function render(){
+  root.innerHTML = '';
+  PHASES.forEach(ph => {
+    const phItems = items.filter(i => i.phase === ph.id);
+    const div = document.createElement('div');
+    div.className = 'phase';
+    div.dataset.phase = ph.id;
+
+    const done = phItems.filter(i=>i.checked).length;
+    div.innerHTML = `<div class="phase-h"><div class="phase-d" style="background:${ph.dot}"></div><div class="phase-t">${ph.label}</div><span class="phase-count">${done}/${phItems.length}</span><div class="phase-dt">${ph.dates}</div></div>`;
+
+    if(!phItems.length){
+      div.innerHTML += '<div class="phase-empty">Sin items asignados a esta fase.</div>';
+    } else {
+      // group by cat
+      const catOrder = [...new Set(phItems.map(i=>i.cat))];
+      catOrder.forEach(catId => {
+        const catItems = phItems.filter(i=>i.cat===catId);
+        const catDiv = document.createElement('div');
+        catDiv.className = 'cat';
+        catDiv.innerHTML = `<div class="cat-l">${CATS[catId]||catId}</div>`;
+        catItems.forEach(it => {
+          const el = document.createElement('div');
+          el.className = 'it' + (it.checked?' done':'');
+          el.dataset.id = it.id;
+
+          const phaseChanged = it.phase !== it.defPhase;
+          const ownerChanged = it.owner !== it.defOwner;
+
+          el.innerHTML = `
+            <input type="checkbox" ${it.checked?'checked':''}>
+            <div class="it-c">
+              <div class="it-t">${it.text}</div>
+              <div class="it-det">${it.detail}</div>
+            </div>
+            <select class="sel sel-phase${phaseChanged?' changed':''}" data-field="phase">
+              ${PHASES.map(p=>`<option value="${p.id}"${it.phase===p.id?' selected':''}>${p.id==='pre'?'Pre':p.id.toUpperCase()}</option>`).join('')}
+            </select>
+            <select class="sel sel-owner${ownerChanged?' changed':''}" data-field="owner" data-val="${it.owner}">
+              ${Object.entries(OWNERS).map(([k,v])=>`<option value="${k}"${it.owner===k?' selected':''}>${v}</option>`).join('')}
+            </select>`;
+          catDiv.appendChild(el);
+        });
+        div.appendChild(catDiv);
+      });
+    }
+
+    // Notes
+    const nk = 'note-'+ph.id;
+    div.innerHTML += `<div class="notes"><div class="notes-l">Notas ${ph.id==='pre'?'Pre-Start':ph.id.toUpperCase()}</div><textarea placeholder="Hallazgos, decisiones..." data-note="${nk}">${notes[nk]||''}</textarea></div>`;
+
+    root.appendChild(div);
+  });
+
+  // Attach events
+  root.querySelectorAll('.it input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', e => {
+      const id = e.target.closest('.it').dataset.id;
+      const it = items.find(i=>i.id===id);
+      it.checked = e.target.checked;
+      e.target.closest('.it').classList.toggle('done', it.checked);
+      updateProgress();
+      autoSave();
+      // update phase count
+      updatePhaseCounts();
+    });
+  });
+
+  root.querySelectorAll('.sel-phase').forEach(sel => {
+    sel.addEventListener('change', e => {
+      const id = e.target.closest('.it').dataset.id;
+      const it = items.find(i=>i.id===id);
+      it.phase = e.target.value;
+      autoSave();
+      render();
+      updateProgress();
+      updateSummary();
+    });
+  });
+
+  root.querySelectorAll('.sel-owner').forEach(sel => {
+    sel.addEventListener('change', e => {
+      const id = e.target.closest('.it').dataset.id;
+      const it = items.find(i=>i.id===id);
+      it.owner = e.target.value;
+      e.target.dataset.val = e.target.value;
+      e.target.classList.toggle('changed', it.owner !== it.defOwner);
+      autoSave();
+      updateSummary();
+    });
+  });
+
+  root.querySelectorAll('textarea').forEach(ta => {
+    ta.addEventListener('input', e => {
+      notes[e.target.dataset.note] = e.target.value;
+      autoSave();
+    });
+  });
+
+  // detail expand on click
+  root.querySelectorAll('.it-det').forEach(d => {
+    d.addEventListener('click', () => d.classList.toggle('expanded'));
+  });
+
+  updateProgress();
+  updateSummary();
+}
+
+function updatePhaseCounts(){
+  document.querySelectorAll('.phase').forEach(ph => {
+    const pid = ph.dataset.phase;
+    const phItems = items.filter(i=>i.phase===pid);
+    const done = phItems.filter(i=>i.checked).length;
+    const span = ph.querySelector('.phase-count');
+    if(span) span.textContent = `${done}/${phItems.length}`;
+  });
+}
+
+function updateProgress(){
+  const progEl = document.getElementById('progress');
+  const phases = [...PHASES.map(p=>p.id), 'all'];
+  let html = '';
+  const colors = {pre:'var(--taupe)',s1:'var(--ocean)',s2:'var(--sky)',s3:'var(--sand)',s4:'var(--gold)',all:'var(--sand)'};
+  const labels = {pre:'Pre-start',s1:'S1',s2:'S2',s3:'S3',s4:'S4',all:'Total'};
+
+  phases.forEach(p => {
+    const list = p==='all' ? items : items.filter(i=>i.phase===p);
+    const done = list.filter(i=>i.checked).length;
+    const total = list.length;
+    const pct = total ? (done/total*100) : 0;
+    html += `<div class="pb"><div class="pb-l">${labels[p]}</div><div class="pb-bg"><div class="pb-f" style="background:${colors[p]};width:${pct}%"></div></div><div class="pb-c">${done}/${total}</div></div>`;
+  });
+  progEl.innerHTML = html;
+}
+
+function updateSummary(){
+  const el = document.getElementById('gantt-summary');
+  const owColors = {r:'ow-r',j:'ow-j',rj:'ow-rj',m:'ow-m'};
+  let html = '';
+  PHASES.forEach(ph => {
+    const phItems = items.filter(i=>i.phase===ph.id);
+    const counts = {};
+    phItems.forEach(i => { counts[i.owner] = (counts[i.owner]||0) + 1; });
+    let pills = '';
+    Object.entries(counts).forEach(([o,c]) => {
+      pills += `<span class="gs-pill ${owColors[o]}">${OWNERS[o]}: ${c}</span>`;
+    });
+    html += `<div class="gs-block"><div class="gs-block__label">${ph.id==='pre'?'Pre':ph.id.toUpperCase()} · ${phItems.length} items</div><div class="gs-block__pills">${pills}</div></div>`;
+  });
+  el.innerHTML = html;
+}
+
+// ═════════════════════════════════════════════════════════
+// PERSISTENCE
+// ═════════════════════════════════════════════════════════
+function saveState(){
+  const s = {
+    items: items.map(i=>({id:i.id,phase:i.phase,owner:i.owner,checked:i.checked})),
+    notes
+  };
+  localStorage.setItem(KEY, JSON.stringify(s));
+  const btn = document.getElementById('save-btn');
+  const o = btn.textContent; btn.textContent = 'Guardado'; setTimeout(()=>btn.textContent=o, 1200);
+}
+function autoSave(){ saveState(); }
+
+function loadState(){
+  const raw = localStorage.getItem(KEY);
+  if(!raw) return;
+  try {
+    const s = JSON.parse(raw);
+    if(s.items) s.items.forEach(si => {
+      const it = items.find(i=>i.id===si.id);
+      if(it){ it.phase=si.phase; it.owner=si.owner; it.checked=si.checked; }
+    });
+    if(s.notes) Object.assign(notes, s.notes);
+  } catch(e){}
+}
+
+function resetAll(){
+  if(!confirm('¿Resetear todo a los valores por defecto?')) return;
+  items.forEach(i=>{ i.phase=i.defPhase; i.owner=i.defOwner; i.checked=false; });
+  notes = {};
+  localStorage.removeItem(KEY);
+  render();
+}
+
+// ═════════════════════════════════════════════════════════
+// TABS
+// ═════════════════════════════════════════════════════════
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tp').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById('tab-'+t.dataset.tab).classList.add('on');
+  });
+});
+
+// ═════════════════════════════════════════════════════════
+// INIT
+// ═════════════════════════════════════════════════════════
+loadState();
+render();
+</script>
+</body>
+</html>
