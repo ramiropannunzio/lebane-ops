@@ -321,7 +321,7 @@ const RAW = [
 ];
 
 // Build items
-const DONE = new Set(['p01','p02','p03','p04','p05','p09','p10','p11','p12','p13','a11','s213']);
+const DONE = new Set(['p01','p02','p03','p04','p05','p09','p10','p11','p12','p13','a01','a02','a03','a04','a05','a06','a07','a08','a09','a10','a11','s213']);
 let items = RAW.map(r => ({id:r[0],text:r[1],detail:r[2],defPhase:r[3],phase:r[3],defOwner:r[4],owner:r[4],cat:r[5],checked:DONE.has(r[0])}));
 let notes = {};
 
