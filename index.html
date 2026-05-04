@@ -231,8 +231,8 @@ const RAW = [
 ['p05','Data ICPs MX (surveys, call notes, segmentación)','Mensajes por segmento: Organizer vs Controller. Input C.','pre','m','inp'],
 ['p06','Ad spend mensual MX por plataforma','Cuánto gastan en Meta vs Google vs LinkedIn. Pedir en mail de hoy. Input F.','pre','m','inp'],
 ['p14','Pedir a Lebané lo que están trabajando en la web nueva','Están cambiando la página. Necesitamos lo que tengan para dar feedback en el audit.','pre','m','inp'],
-['p07','Competitive landscape — comunicación competidores MX','Ads, LinkedIn, web. Huecos de mensaje.','pre','r','res'],
-['p08','Auditoría web + producto Lebané (público)','Estado actual vs audit previo. Foco landing MX y mobile.','pre','r','res'],
+['p07','Competitive landscape — comunicación competidores MX','PARCIAL: análisis high-level hecho. Falta profundizar ads, LinkedIn y web por competidor MX.','pre','r','res'],
+['p08','Auditoría web + producto Lebané (público)','PARCIAL: audit hecho sobre sitio AR. Falta audit específico landing MX y mobile.','pre','r','res'],
 ['p09','Token extract — colores, tipografías, patrones visuales','Base para producción de creativos.','pre','r','prep'],
 ['p10','Content pillars v0 — hipótesis OKRs + ICPs','Draft inicial. Se refina en S1. Compartir con Justo para validación stats.','pre','r','prep'],
 ['p11','Preparar agenda kickoff + doc de alineación','Roadmap 4 semanas + expectativas + qué necesitamos de Martín.','pre','r','prep'],
@@ -311,7 +311,7 @@ const RAW = [
 ['s402','Confirmar: 10 piezas batch 2 (completa 20/mes)','Variantes + formatos nuevos.','s4','r','creative'],
 ['s403','Review output influencer @roydpaterson','Verificar brief respetado. Feedback pre-publicación.','s4','r','creative'],
 ['s404','Orgánico batch 2 — 6 piezas (completa 12/mes)','Ajustar temas según engagement batch 1.','s4','r','creative'],
-['s405','Sales enablement template v1 — case study STAR','Template de diseño. Listo para llenar con data real.','s4','r','creative'],
+['s405','Sales enablement — leave-behind 1-pager para champion interno','Cuello de botella estructural: el que firma no estuvo en la demo. Pedido directo de Martín (§1.7 Brief). Adelantado de S4 a S2.','s2','r','creative'],
 ['s406','A/B testing — pausa low / escala winners','Creativos, copies, audiencias. Documentar.','s4','j','paid'],
 ['s407','Batch 2 cargado en campañas activas','Creativos rotando. Presupuesto ajustado.','s4','j','paid'],
 ['s408','Análisis competencia — reporte mensual','Creativos, keywords, posicionamiento MX.','s4','rj','close'],
@@ -321,7 +321,7 @@ const RAW = [
 ];
 
 // Build items
-const DONE = new Set(['p01','p02','p12','p13','a11','p09']);
+const DONE = new Set(['p01','p02','p03','p04','p05','p09','p10','p11','p12','p13','a11','s213']);
 let items = RAW.map(r => ({id:r[0],text:r[1],detail:r[2],defPhase:r[3],phase:r[3],defOwner:r[4],owner:r[4],cat:r[5],checked:DONE.has(r[0])}));
 let notes = {};
 
