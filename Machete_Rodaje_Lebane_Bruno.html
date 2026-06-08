@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machete de rodaje — Guiones Lebane</title>
+<style>
+  /* ============================================================
+     TCL tokens (subset de brand.css v7.3) → :root
+     Documento self-contained · print-ready · light theme (set-readable)
+     ============================================================ */
+  :root {
+    --color-dark-grey:   #282C2F;
+    --color-white:       #FFFBF9;
+    --color-sand:        #B89C84;
+    --color-ocean-slate: #26465F;
+    --color-sky:         #A2B4C0;
+    --color-light-tan:   #F0E6E0;
+    --color-gold:        #876B46;
+    --color-black:       #0E100F;
+
+    --color-sand-20:     #F1EBE6;
+    --color-sand-10:     #F8F5F3;
+    --color-dark-grey-70:#626F73;
+    --color-dark-grey-60:#76848A;
+    --color-dark-grey-10:#E8EBEC;
+    --color-ocean-slate-90:#315A7A;
+
+    --font-display: "Helvetica Now Display", Helvetica, Arial, sans-serif;
+    --font-text:    "Helvetica Now Text", Helvetica, Arial, sans-serif;
+
+    --fw-regular: 400;
+    --fw-medium:  500;
+    --fw-bold:    700;
+    --fw-heavy:   800;
+
+    --tracking-heading: -0.02em;
+    --tracking-meta:    0.15em;
+    --tracking-cta:     0.06em;
+
+    --space-8:8px; --space-12:12px; --space-16:16px; --space-24:24px;
+    --space-32:32px; --space-40:40px; --space-48:48px; --space-64:64px;
+
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--color-light-tan);
+    color: var(--color-black);
+    font-family: var(--font-text);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: var(--space-64) var(--space-48) var(--space-48);
+  }
+
+  /* --- Header --- */
+  .doc-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-24);
+    border-bottom: 2px solid var(--color-dark-grey);
+    padding-bottom: var(--space-24);
+    margin-bottom: var(--space-40);
+  }
+  .doc-header__logo svg { width: 116px; height: auto; display: block; }
+  .doc-header__meta {
+    text-align: right;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--color-dark-grey-70);
+    line-height: 1.6;
+  }
+
+  .doc-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: var(--fw-heavy);
+    letter-spacing: var(--tracking-heading);
+    line-height: 1.02;
+    margin: 0 0 var(--space-8);
+  }
+  .doc-sub {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: var(--fw-medium);
+    color: var(--color-gold);
+    letter-spacing: 0.02em;
+    margin: 0 0 var(--space-32);
+  }
+
+  /* --- Cómo usarlo box --- */
+  .howto {
+    background: var(--color-dark-grey);
+    color: var(--color-white);
+    border-radius: var(--radius);
+    padding: var(--space-24) var(--space-32);
+    margin-bottom: var(--space-48);
+  }
+  .howto__label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--color-sand);
+    display: block;
+    margin-bottom: var(--space-12);
+  }
+  .howto p { margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,251,249,0.88); }
+  .howto strong { color: var(--color-white); font-weight: var(--fw-bold); }
+
+  /* --- Section count --- */
+  .section-eyebrow {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--color-dark-grey-60);
+    margin: 0 0 var(--space-24);
+  }
+
+  /* --- AD card --- */
+  .ad {
+    background: var(--color-sand-10);
+    border: 1px solid var(--color-dark-grey-10);
+    border-left: 4px solid var(--color-sand);
+    border-radius: var(--radius);
+    padding: var(--space-32);
+    margin-bottom: var(--space-24);
+  }
+  .ad__num {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--color-sand);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .ad__title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-heading);
+    line-height: 1.05;
+    margin: 0 0 var(--space-12);
+  }
+  .ad__register {
+    font-family: var(--font-text);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--color-ocean-slate);
+    border-left: 2px solid var(--color-sky);
+    padding-left: var(--space-12);
+    margin: 0 0 var(--space-24);
+    line-height: 1.45;
+  }
+
+  .block-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-cta);
+    text-transform: uppercase;
+    color: var(--color-dark-grey-70);
+    margin: var(--space-24) 0 var(--space-12);
+  }
+  .block-label:first-of-type { margin-top: 0; }
+
+  /* hooks */
+  .hooks { list-style: none; margin: 0; padding: 0; }
+  .hooks li {
+    display: flex;
+    gap: var(--space-12);
+    padding: var(--space-12) 0;
+    border-bottom: 1px dashed var(--color-dark-grey-10);
+    line-height: 1.5;
+  }
+  .hooks li:last-child { border-bottom: none; }
+  .tag {
+    flex: 0 0 auto;
+    width: 22px; height: 22px;
+    border-radius: 4px;
+    background: var(--color-ocean-slate);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: var(--fw-bold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* lo que decís */
+  .says { margin: 0; }
+  .says__row { padding: var(--space-12) 0; border-bottom: 1px solid var(--color-dark-grey-10); }
+  .says__row:last-child { border-bottom: none; }
+  .says__beat {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--color-white);
+    background: var(--color-gold);
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: var(--space-8);
+  }
+  .says__beat--cta { background: var(--color-sand); color: var(--color-black); }
+  .says__text { margin: 0; line-height: 1.55; }
+
+  .divider {
+    height: 1px;
+    background: var(--color-dark-grey-10);
+    border: none;
+    margin: var(--space-16) 0 var(--space-8);
+  }
+
+  .doc-footer {
+    margin-top: var(--space-48);
+    padding-top: var(--space-24);
+    border-top: 1px solid var(--color-dark-grey-10);
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--color-dark-grey-60);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* --- Print: HTML → PDF vía Cmd+P --- */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    body { background: #fff; }
+    .page { max-width: none; padding: 0; }
+    .ad { break-inside: avoid; }
+    .howto { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tag, .says__beat, .ad__num, .howto__label { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="doc-header">
+    <div class="doc-header__logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1055 550" aria-label="The Creative Lever">
+        <path fill="#282c2f" d="M53.2,135.6c0,23.1,11.3,37.7,32.8,37.7h35.6v-24h-28c-11.1,0-15.3-7.9-15.3-18.7v-50.8h43.2v-22h-19.2c-16.9,0-24-3.7-24-19.4v-16.9h-25.4v8.8c0,23.3,10.6,27.5,29.8,27.5H28.7v22h24.5v55.9Z"/>
+        <polygon fill="#282c2f" points="140.9 21.4 140.9 173.3 166.3 173.3 166.3 111.1 166.3 21.4 140.9 21.4"/>
+        <path fill="#282c2f" d="M207.7,78.3c17.8,0,33.7,15.3,33.7,33v61.9h25.4v-62.4c0-32.8-20.6-55-52.7-55s-47.8,19.9-47.8,55.2c0-18,17.8-32.8,41.4-32.8Z"/>
+        <path fill="#282c2f" d="M345.5,177.2c34.7,0,56.6-12.5,62.2-42.3h-24.3c-3.2,12.9-16.2,20.3-37.4,20.3s-39.8-11.1-39.8-31l103.3-.2v-7.9c0-40.4-24.3-61.7-64.9-61.7s-63.1,20.1-63.1,61.5,24.7,61.2,64,61.2ZM344.8,76.5c20.6,0,39.3,11.1,39.3,30.7l-77.9-.5c0-21.5,18-30.3,38.6-30.3Z"/>
+        <path fill="#282c2f" d="M94.3,247.9c15.9,0,34.4,6.2,37.9,25.2h26.3c-.5-35.1-35.6-48.8-66.3-48.8h0c-37.2,0-64.7,22-64.7,60.3s26.8,61,65.9,61,64.5-12.5,65.2-48.8h-26.3c-3.7,19-22.6,25-38.6,25-31,0-40.2-17.6-40.2-37.2s10.2-36.7,40.9-36.7Z"/>
+        <path fill="#282c2f" d="M247.7,223.4h-16.9c-19.9,0-37,16.2-37,43.2v-40.4h-25.7v115.6h25.9v-56.2c0-16.9,2.3-37.7,29.1-37.7h24.5v-24.5Z"/>
+        <path fill="#282c2f" d="M310.4,222.9c-40,0-63.1,20.1-63.1,61.5s24.7,61.2,64,61.2,56.6-12.5,62.2-42.3h-24.3c-3.2,12.9-16.2,20.3-37.4,20.3s-39.8-11.1-39.8-31l103.3-.2v-7.9c0-40.4-24.3-61.7-64.9-61.7ZM272,275.1c0-21.5,18-30.3,38.6-30.3s39.3,11.1,39.3,30.7l-77.9-.5Z"/>
+        <path fill="#282c2f" d="M489.9,341.5h25.4v-65.4c0-37.2-23.8-52.9-65.6-52.9s-61.9,12.9-61.9,44.6h23.8c0-16.9,17.1-24.7,38.1-24.7s39.8,5.8,39.8,25.7v3.9l-57.1,2.5c-21.3.9-47.4,9.2-47.4,33.3s23.6,36.3,46.2,36.3c32.6,0,50-11.7,58.7-21.2v18ZM439.1,325.5c-12.9,0-28.4-4.6-28.4-18s18.7-14.3,31.7-14.8l47.6-2.1v5.9c0,20.3-33,28.7-50.8,29Z"/>
+        <path fill="#282c2f" d="M546.6,304c0,23.1,11.3,37.7,32.8,37.7h35.6v-24h-28c-11.1,0-15.3-7.9-15.3-18.7v-50.8h58.4v93.6h25.9v-115.6h-13.8s-46.4,0-46.4,0c-16.9,0-24-3.7-24-19.4v-16.9h-25.4v8.8c0,23.3,10.6,27.5,29.8,27.5h-54.1v22h24.5v55.9Z"/>
+        <path fill="#282c2f" d="M515.4,481.9v-109.1h-25.4l.2,114.2c0,23.1,11.3,37.7,32.8,37.7h24.4v-24h-16.8c-11.1,0-15.3-7.9-15.3-18.7Z"/>
+        <path fill="#282c2f" d="M642.9,210.1c9,0,15.5-6.9,15.5-15.7s-6.7-15.7-15.5-15.7-15.7,6.7-15.7,15.7,6.9,15.7,15.7,15.7Z"/>
+        <path fill="#282c2f" d="M862,345.6c34.7,0,56.6-12.5,62.2-42.3h-24.3c-3.2,12.9-16.2,20.3-37.4,20.3s-39.8-11.1-39.8-31l103.3-.2v-7.9c0-40.4-24.3-61.7-64.9-61.7s-63.1,20.1-63.1,61.5,24.7,61.2,64,61.2ZM861.3,244.8c20.6,0,39.3,11.1,39.3,30.7l-77.9-.5c0-21.5,18-30.3,38.6-30.3Z"/>
+        <path fill="#282c2f" d="M616.7,405.9c-40,0-63.1,20.1-63.1,61.5s24.7,61.2,64,61.2,56.6-12.5,62.2-42.3h-24.3c-3.2,12.9-16.2,20.3-37.4,20.3s-39.8-11.1-39.8-31l103.3-.2v-7.9c0-40.4-24.3-61.7-64.9-61.7ZM578.4,458.1c0-21.5,18-30.3,38.6-30.3s39.3,11.1,39.3,30.7l-77.9-.5Z"/>
+        <polygon fill="#282c2f" points="783.3 409.1 747.1 507.2 710.8 409.1 683.5 409.1 726.3 524.6 740.6 524.6 753.5 524.6 767.8 524.6 810.7 409.1 783.3 409.1"/>
+        <polygon fill="#282c2f" points="726.7 341.7 739.6 341.7 753.8 341.7 796.7 226.1 769.4 226.1 733.1 324.2 696.9 226.1 669.5 226.1 712.4 341.7 726.7 341.7"/>
+        <path fill="#282c2f" d="M873.4,405.9c-40,0-63.1,20.1-63.1,61.5s24.7,61.2,64,61.2,56.6-12.5,62.2-42.3h-24.3c-3.2,12.9-16.2,20.3-37.4,20.3s-39.8-11.1-39.8-31l103.3-.2v-7.9c0-40.4-24.3-61.7-64.9-61.7ZM835,458.1c0-21.5,18-30.3,38.6-30.3s39.3,11.1,39.3,30.7l-77.9-.5Z"/>
+        <path fill="#282c2f" d="M1010.6,406.3c-19.9,0-37,16.2-37,43.2v-40.4h-25.7v115.6h25.9v-56.2c0-16.9,2.3-37.7,29.1-37.7h24.5v-24.5h-16.9Z"/>
+      </svg>
+    </div>
+    <div class="doc-header__meta">
+      Machete de rodaje<br>Lebane · 7 ADs
+    </div>
+  </header>
+
+  <h1 class="doc-title">Machete de rodaje — Guiones Lebane</h1>
+  <p class="doc-sub">Bruno · co-founder · para leer antes de grabar</p>
+
+  <div class="howto">
+    <span class="howto__label">Cómo usarlo</span>
+    <p>En cada ad grabás <strong>todas las opciones de hook</strong> (la mejor se elige en la edición). Después viene el cuerpo: lo decís de corrido. En el bloque de solución usás el celular / la app de verdad — la pantalla es lo que da credibilidad. El registro de cada ad va en itálica al lado del título.</p>
+  </div>
+
+  <p class="section-eyebrow">7 ADs · Bruno solo a cámara</p>
+
+  <!-- ===================== AD 1 ===================== -->
+  <article class="ad">
+    <span class="ad__num">AD 1</span>
+    <h2 class="ad__title">El margen ciego</h2>
+    <p class="ad__register">El ganador validado · autoridad, firme — no lo sufriste, lo diagnosticás</p>
+
+    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <ul class="hooks">
+      <li><span class="tag">A</span><span>Hay desarrolladoras que terminan un desarrollo y no saben cuánta plata ganaron.</span></li>
+      <li><span class="tag">B</span><span>Vendés todo el desarrollo y ganaste menos de lo que creés.</span></li>
+    </ul>
+
+    <hr class="divider">
+    <p class="block-label">Lo que decís</p>
+    <div class="says">
+      <div class="says__row"><span class="says__beat">Diagnóstico</span><p class="says__text">Y no es por malos. El número real recién aparece meses después de entregar.</p></div>
+      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Mientras tanto los desvíos, los sobrecostos y la inflación se comen el margen en silencio.</p></div>
+      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Con Lebane ves en tiempo real dónde está cada peso: el costo, el avance y la rentabilidad real de cada proyecto. No esperás a fin de obra para saber si ganaste.</p></div>
+      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">Los que controlan en tiempo real ya lo están haciendo. Apretá el botón si querés saber cómo.</p></div>
+    </div>
+  </article>
+
+  <!-- ===================== AD 2 ===================== -->
+  <article class="ad">
+    <span class="ad__num">AD 2</span>
+    <h2 class="ad__title">El cambio no es el riesgo</h2>
+    <p class="ad__register">Tranquilo, cercano — SIN dedo acusador (nada de "estás atrasado")</p>
+
+    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <ul class="hooks">
+      <li><span class="tag">A</span><span>"El mayor riesgo de una constructora hoy no es la obra. Es gestionarla como hace 10 años."</span></li>
+      <li><span class="tag">B</span><span>Si seguís tus obras con planillas, los que controlan en tiempo real te sacan ventaja.</span></li>
+      <li><span class="tag">C</span><span>"Cambiar de Excel es un riesgo." Es la objeción que más escucho. Y es al revés.</span></li>
+    </ul>
+
+    <hr class="divider">
+    <p class="block-label">Lo que decís</p>
+    <div class="says">
+      <div class="says__row"><span class="says__beat">Objeción</span><p class="says__text">Cuando alguien arranca con Lebane casi siempre llega con el mismo miedo: que el equipo no se adapte, que mejor quedarse con lo conocido. Es entendible. Pero en una semana ya están manejando todo desde el celular.</p></div>
+      <div class="says__row"><span class="says__beat">Dolor real</span><p class="says__text">Y lo veo en cada constructora que arranca: no es que falte trabajo, es que los números aparecen siempre tarde. El que ya se modernizó cierra el mes en cinco minutos y sabe exactamente cuánto ganó. Esa es la diferencia.</p></div>
+      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Lebane centraliza toda la operación: costos, avances, rentabilidad. Le preguntás a Lena por WhatsApp y te responde sin moverte de la obra.</p></div>
+      <div class="says__row"><span class="says__beat says__beat--cta">Quiebre + CTA</span><p class="says__text">El cambio no es el riesgo. El riesgo es seguir igual. Mientras lo pensás, otros ya lo están usando — apretá el botón si querés saber cómo.</p></div>
+    </div>
+  </article>
+
+  <!-- ===================== AD 3 ===================== -->
+  <article class="ad">
+    <span class="ad__num">AD 3</span>
+    <h2 class="ad__title">Las fugas invisibles</h2>
+    <p class="ad__register">Dolor observacional, calmo</p>
+
+    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <ul class="hooks">
+      <li><span class="tag">A</span><span>En cada desarrollo se pierde margen. Y no aparece en ningún Excel.</span></li>
+      <li><span class="tag">B</span><span>Los desvíos y los sobrecostos se comen el margen en silencio. Y la desarrolladora se entera cuando ya es tarde.</span></li>
+      <li><span class="tag">C</span><span>Lo que no se controla en tiempo real, se termina pagando. Siempre.</span></li>
+    </ul>
+
+    <hr class="divider">
+    <p class="block-label">Lo que decís</p>
+    <div class="says">
+      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Una parte de la info está en los presupuestos, otra en lo del contador, el resto en un Excel que nadie actualiza. Nadie tiene el número entero. Y justo ahí, en el medio, se escapa la ganancia.</p></div>
+      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Lebane junta toda la operación en un solo lugar. Le preguntás a Lena por WhatsApp cómo viene el presupuesto, los pagos, los avances… y te responde en segundos.</p></div>
+      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">Los que cerraron el desvío no vuelven a las planillas sueltas. Apretá el botón si querés saber cómo.</p></div>
+    </div>
+  </article>
+
+  <!-- ===================== AD 4 ===================== -->
+  <article class="ad">
+    <span class="ad__num">AD 4</span>
+    <h2 class="ad__title">Apagar incendios</h2>
+    <p class="ad__register">Empatía / hartazgo del cliente (no seriedad financiera) — patrón observado, no en primera persona</p>
+
+    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <ul class="hooks">
+      <li><span class="tag">A</span><span>Si cada vez que el dueño se va de la obra todo se prende fuego, no es un problema de equipo. Es un problema de información.</span></li>
+      <li><span class="tag">B</span><span>Hablo todos los días con constructores que pasan el día apagando incendios y a la noche todavía no saben cómo vienen. ¿Te suena?</span></li>
+      <li><span class="tag">C</span><span>Si tu obra no puede funcionar un día sin vos, no sos imprescindible. Estás atrapado.</span></li>
+    </ul>
+
+    <hr class="divider">
+    <p class="block-label">Lo que decís</p>
+    <div class="says">
+      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Te llaman por un pago, por un material que no llegó, por una requisición perdida en un WhatsApp. Vivís corriendo atrás de los datos en vez de decidir con ellos. Y así es imposible despegarte.</p></div>
+      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Con Lebane está todo en un lugar y en tiempo real. Desde WhatsApp pedís el reporte de avances, los pagos del día o las facturas pendientes, y los tenés en segundos. Dejás de apagar incendios y empezás a decidir.</p></div>
+      <div class="says__row"><span class="says__beat says__beat--cta">Quiebre + CTA</span><p class="says__text">El control no es trabajar más. Es tener la info cuando la necesitás. Apretá el botón si querés saber cómo.</p></div>
+    </div>
+  </article>
+
+  <!-- ===================== AD 5 ===================== -->
+  <article class="ad">
+    <span class="ad__num">AD 5</span>
+    <h2 class="ad__title">Por qué construimos Lebane</h2>
+    <p class="ad__register">Historia de origen — narrativo, tranquilo: "vi el problema y lo construí"</p>
+
+    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <ul class="hooks">
+      <li><span class="tag">A</span><span>Construimos Lebane porque nos cansamos de ver desarrolladores que no sabían cuánto ganaban en cada obra.</span></li>
+      <li><span class="tag">B</span><span>Antes de Lebane, los desarrolladores con los que trabajaba cruzaban tres Excels para saber un solo número. Te cuento qué cambió.</span></li>
+      <li><span class="tag">C</span><span>Lebane nació de un problema concreto: la rentabilidad real aparecía siempre tarde, cuando ya no se podía corregir nada.</span></li>
+    </ul>
+
+    <hr class="divider">
+    <p class="block-label">Lo que decís</p>
+    <div class="says">
+      <div class="says__row"><span class="says__beat">El antes</span><p class="says__text">Lo veía siempre: el presupuesto en un Excel, la contabilidad en otro lado, los pagos en un tercero. Y la rentabilidad real recién cuando el contador cerraba el mes… cuando ya no se podía corregir nada.</p></div>
+      <div class="says__row"><span class="says__beat">El después</span><p class="says__text">Por eso armamos Lebane: todo en una sola plataforma y en tiempo real. Ves el presupuesto contra lo que llevás gastado, el avance de cada obra, y desde WhatsApp le pedís a Lena los pagos del día o el reporte de avances sin moverte de la obra.</p></div>
+      <div class="says__row"><span class="says__beat says__beat--cta">Resultado + CTA</span><p class="says__text">Hoy los que lo usan dejaron de cerrar el mes a ciegas y de enterarse tarde de los desvíos. Si manejás varios proyectos y todavía vas con planillas, apretá el botón y mirá cómo funciona.</p></div>
+    </div>
+  </article>
+
+  <!-- ===================== AD 6 ===================== -->
+  <article class="ad">
+    <span class="ad__num">AD 6</span>
+    <h2 class="ad__title">El verdadero freno de tu empresa</h2>
+    <p class="ad__register">Status / crecimiento — afirmación contraintuitiva con autoridad</p>
+
+    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <ul class="hooks">
+      <li><span class="tag">A</span><span>Muchos constructores creen que, para crecer, necesitan meter más proyectos. En realidad, necesitan dejar de perder margen en los que ya tienen.</span></li>
+      <li><span class="tag">B</span><span>Si para saber cómo vienen los números de tu obra tenés que frenar el día y armar una reunión de dos horas, no tenés el control de tu empresa.</span></li>
+      <li><span class="tag">C</span><span>El freno de la mayoría de las constructoras no es la falta de ventas. Es el caos operativo.</span></li>
+    </ul>
+
+    <hr class="divider">
+    <p class="block-label">Lo que decís</p>
+    <div class="says">
+      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Podés vender todo el desarrollo, pero si las requisiciones se pierden en WhatsApp, los materiales aumentan todas las semanas y los desvíos los ves un mes tarde… estás trabajando para cambiar plata, no para ganar margen.</p></div>
+      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Con Lebane, pasás del caos al control. Centralizás compras, costos y avances en un solo lugar. Le preguntás a Lena por WhatsApp el reporte de desvíos o los pagos del día y te responde en segundos, en tu celular.</p></div>
+      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">El orden es lo único que te permite escalar sin volverte loco. Los que ya controlan en tiempo real no vuelven atrás. Apretá el botón y mirá cómo funciona.</p></div>
+    </div>
+  </article>
+
+  <!-- ===================== AD 7 ===================== -->
+  <article class="ad">
+    <span class="ad__num">AD 7</span>
+    <h2 class="ad__title">Los que ya controlan</h2>
+    <p class="ad__register">Social proof — autoridad founder + clientes · el más seguro</p>
+
+    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <ul class="hooks">
+      <li><span class="tag">A</span><span>Esta es la misma plataforma que usan Grupo Portland y Grupo Briones para controlar sus desarrollos.</span></li>
+      <li><span class="tag">B</span><span>¿Querés saber con qué controlan los números las desarrolladoras más grandes? Te lo muestro.</span></li>
+      <li><span class="tag">C</span><span>Grupo Portland y Grupo Briones dejaron de manejar sus obras a planilla. Hoy lo hacen con Lebane.</span></li>
+    </ul>
+
+    <hr class="divider">
+    <p class="block-label">Lo que decís</p>
+    <div class="says">
+      <div class="says__row"><span class="says__beat">Autoridad</span><p class="says__text">Y no son los únicos: más de 400 desarrolladoras en la región ya operan con Lebane. ¿Por qué? Porque dejaron de enterarse tarde de los desvíos y de cerrar el mes a ciegas.</p></div>
+      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Centralizan obra, finanzas y avances en una sola plataforma. Y desde WhatsApp le piden a Lena el reporte de avances o los pagos del día, sin moverse de la obra.</p></div>
+      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">Si los que mueven el mercado ya lo están usando, ¿por qué vos no? Apretá el botón y mirá cómo funciona.</p></div>
+    </div>
+  </article>
+
+  <footer class="doc-footer">
+    <span>The Creative Lever</span>
+    <span>Machete de rodaje · Lebane</span>
+  </footer>
+
+</div>
+</body>
+</html>
