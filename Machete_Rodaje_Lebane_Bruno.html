@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Machete de rodaje — Guiones Lebane</title>
+<title>Machete de rodaje — Guiones Lebane (Bruno · founder)</title>
 <style>
   /* ============================================================
      TCL tokens (subset de brand.css v7.3) → :root
-     Documento self-contained · print-ready · light theme (set-readable)
+     Self-contained · print-ready · light theme (set-readable)
      ============================================================ */
   :root {
     --color-dark-grey:   #282C2F;
@@ -21,10 +21,12 @@
 
     --color-sand-20:     #F1EBE6;
     --color-sand-10:     #F8F5F3;
+    --color-sand-40:     #E3D8CE;
     --color-dark-grey-70:#626F73;
     --color-dark-grey-60:#76848A;
     --color-dark-grey-10:#E8EBEC;
     --color-ocean-slate-90:#315A7A;
+    --color-ocean-slate-10:#E4EDF4;
 
     --font-display: "Helvetica Now Display", Helvetica, Arial, sans-serif;
     --font-text:    "Helvetica Now Text", Helvetica, Arial, sans-serif;
@@ -45,7 +47,6 @@
   }
 
   * { box-sizing: border-box; }
-
   html, body { margin: 0; padding: 0; }
 
   body {
@@ -57,203 +58,232 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .page {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: var(--space-64) var(--space-48) var(--space-48);
-  }
+  .page { max-width: 920px; margin: 0 auto; padding: var(--space-64) var(--space-48) var(--space-48); }
 
   /* --- Header --- */
   .doc-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: var(--space-24);
+    display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-24);
     border-bottom: 2px solid var(--color-dark-grey);
-    padding-bottom: var(--space-24);
-    margin-bottom: var(--space-40);
+    padding-bottom: var(--space-24); margin-bottom: var(--space-40);
   }
   .doc-header__logo svg { width: 116px; height: auto; display: block; }
   .doc-header__meta {
-    text-align: right;
-    font-family: var(--font-display);
-    font-size: 11px;
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-    color: var(--color-dark-grey-70);
-    line-height: 1.6;
+    text-align: right; font-family: var(--font-display); font-size: 11px;
+    letter-spacing: var(--tracking-meta); text-transform: uppercase;
+    color: var(--color-dark-grey-70); line-height: 1.6;
   }
 
   .doc-title {
-    font-family: var(--font-display);
-    font-size: 40px;
-    font-weight: var(--fw-heavy);
-    letter-spacing: var(--tracking-heading);
-    line-height: 1.02;
+    font-family: var(--font-display); font-size: 38px; font-weight: var(--fw-heavy);
+    letter-spacing: var(--tracking-heading); line-height: 1.04; margin: 0 0 var(--space-8);
+  }
+  .doc-sub { font-family: var(--font-display); font-size: 14px; font-weight: var(--fw-medium); color: var(--color-gold); margin: 0 0 var(--space-8); }
+  .doc-version { font-style: italic; font-size: 14px; color: var(--color-dark-grey-70); margin: 0 0 var(--space-32); }
+
+  /* --- Control de cambios --- */
+  .changelog {
+    background: var(--color-dark-grey); color: var(--color-white);
+    border-radius: var(--radius); padding: var(--space-24) var(--space-32); margin-bottom: var(--space-32);
+  }
+  .changelog__label {
+    font-family: var(--font-display); font-size: 11px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase;
+    color: var(--color-sand); display: block; margin-bottom: var(--space-16);
+  }
+  .changelog ul { margin: 0; padding-left: 18px; }
+  .changelog li { font-size: 14px; line-height: 1.55; color: rgba(255,251,249,0.88); margin-bottom: var(--space-8); }
+  .changelog li:last-child { margin-bottom: 0; }
+  .changelog strong { color: var(--color-white); }
+  .changelog .legend { margin-top: var(--space-16); font-size: 12.5px; color: rgba(255,251,249,0.6); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-12); }
+
+  /* --- Generic callout: cómo usarlo / setup --- */
+  .callout {
+    background: var(--color-sand-10); border: 1px solid var(--color-dark-grey-10);
+    border-left: 4px solid var(--color-sand); border-radius: var(--radius);
+    padding: var(--space-24) var(--space-32); margin-bottom: var(--space-32);
+  }
+  .callout__label {
+    font-family: var(--font-display); font-size: 11px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase;
+    color: var(--color-gold); display: block; margin-bottom: var(--space-12);
+  }
+  .callout p { margin: 0 0 var(--space-12); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* setup sub-blocks */
+  .setup-grp { margin-top: var(--space-24); }
+  .setup-grp__h {
+    font-family: var(--font-display); font-size: 13px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-cta); text-transform: uppercase; color: var(--color-ocean-slate);
     margin: 0 0 var(--space-8);
   }
-  .doc-sub {
-    font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: var(--fw-medium);
-    color: var(--color-gold);
-    letter-spacing: 0.02em;
-    margin: 0 0 var(--space-32);
-  }
+  .setup-grp ul { margin: 0 0 var(--space-8); padding-left: 18px; }
+  .setup-grp li { margin-bottom: 6px; line-height: 1.5; }
 
-  /* --- Cómo usarlo box --- */
-  .howto {
-    background: var(--color-dark-grey);
-    color: var(--color-white);
-    border-radius: var(--radius);
-    padding: var(--space-24) var(--space-32);
-    margin-bottom: var(--space-48);
+  /* claims box (verified) */
+  .claims {
+    background: var(--color-ocean-slate); color: var(--color-white);
+    border-radius: var(--radius); padding: var(--space-24) var(--space-32); margin: var(--space-24) 0 0;
   }
-  .howto__label {
-    font-family: var(--font-display);
-    font-size: 11px;
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-    color: var(--color-sand);
-    display: block;
-    margin-bottom: var(--space-12);
+  .claims__label {
+    font-family: var(--font-display); font-size: 11px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; color: var(--color-sky);
+    display: block; margin-bottom: var(--space-12);
   }
-  .howto p { margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,251,249,0.88); }
-  .howto strong { color: var(--color-white); font-weight: var(--fw-bold); }
+  .claims p { margin: 0 0 var(--space-12); font-size: 14px; color: rgba(255,251,249,0.88); }
+  .claims ul { margin: 0; padding-left: 18px; }
+  .claims li { margin-bottom: 6px; color: var(--color-white); font-weight: var(--fw-medium); }
 
-  /* --- Section count --- */
+  /* --- section eyebrow --- */
   .section-eyebrow {
-    font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-    color: var(--color-dark-grey-60);
-    margin: 0 0 var(--space-24);
+    font-family: var(--font-display); font-size: 12px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; color: var(--color-dark-grey-60);
+    margin: var(--space-48) 0 var(--space-24); padding-top: var(--space-16);
+    border-top: 1px solid var(--color-dark-grey-10);
   }
 
-  /* --- AD card --- */
+  /* --- AD / Hybrid card --- */
   .ad {
-    background: var(--color-sand-10);
-    border: 1px solid var(--color-dark-grey-10);
-    border-left: 4px solid var(--color-sand);
-    border-radius: var(--radius);
-    padding: var(--space-32);
-    margin-bottom: var(--space-24);
+    background: var(--color-sand-10); border: 1px solid var(--color-dark-grey-10);
+    border-left: 4px solid var(--color-sand); border-radius: var(--radius);
+    padding: var(--space-32); margin-bottom: var(--space-24);
   }
+  .ad--hybrid { border-left-color: var(--color-ocean-slate); }
   .ad__num {
-    font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-    color: var(--color-sand);
-    display: block;
-    margin-bottom: 2px;
+    font-family: var(--font-display); font-size: 12px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; color: var(--color-sand);
+    display: block; margin-bottom: 2px;
   }
+  .ad--hybrid .ad__num { color: var(--color-ocean-slate); }
   .ad__title {
-    font-family: var(--font-display);
-    font-size: 24px;
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-heading);
-    line-height: 1.05;
-    margin: 0 0 var(--space-12);
+    font-family: var(--font-display); font-size: 23px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-heading); line-height: 1.06; margin: 0 0 var(--space-8);
   }
-  .ad__register {
-    font-family: var(--font-text);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--color-ocean-slate);
-    border-left: 2px solid var(--color-sky);
-    padding-left: var(--space-12);
-    margin: 0 0 var(--space-24);
-    line-height: 1.45;
+  .ad__meta {
+    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--color-dark-grey-70); margin: 0 0 var(--space-16); line-height: 1.5;
   }
+  .ad__naming {
+    font-family: var(--font-text); font-size: 12.5px; color: var(--color-gold);
+    background: var(--color-sand-20); border-radius: 4px; padding: 4px 10px; display: inline-block;
+    margin: 0 0 var(--space-16);
+  }
+  .ad__why {
+    font-size: 14px; color: var(--color-dark-grey-70); border-left: 2px solid var(--color-sky);
+    padding-left: var(--space-12); margin: 0 0 var(--space-24); line-height: 1.5;
+  }
+  .ad__why strong { color: var(--color-black); }
 
   .block-label {
-    font-family: var(--font-display);
-    font-size: 11px;
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-cta);
-    text-transform: uppercase;
-    color: var(--color-dark-grey-70);
+    font-family: var(--font-display); font-size: 11px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-cta); text-transform: uppercase; color: var(--color-dark-grey-70);
     margin: var(--space-24) 0 var(--space-12);
   }
-  .block-label:first-of-type { margin-top: 0; }
 
   /* hooks */
   .hooks { list-style: none; margin: 0; padding: 0; }
   .hooks li {
-    display: flex;
-    gap: var(--space-12);
-    padding: var(--space-12) 0;
-    border-bottom: 1px dashed var(--color-dark-grey-10);
-    line-height: 1.5;
+    display: flex; gap: var(--space-12); padding: var(--space-12) 0;
+    border-bottom: 1px dashed var(--color-dark-grey-10); line-height: 1.5;
   }
   .hooks li:last-child { border-bottom: none; }
   .tag {
-    flex: 0 0 auto;
-    width: 22px; height: 22px;
-    border-radius: 4px;
-    background: var(--color-ocean-slate);
-    color: var(--color-white);
-    font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: var(--fw-bold);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    flex: 0 0 auto; width: 22px; height: 22px; border-radius: 4px;
+    background: var(--color-ocean-slate); color: var(--color-white);
+    font-family: var(--font-display); font-size: 12px; font-weight: var(--fw-bold);
+    display: inline-flex; align-items: center; justify-content: center;
   }
+  .hook-pri {
+    display: inline-block; font-family: var(--font-display); font-size: 9px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; padding: 2px 6px; border-radius: 3px;
+    vertical-align: middle; margin-left: 6px;
+  }
+  .hook-pri--low { background: var(--color-dark-grey-10); color: var(--color-dark-grey-70); }
+  .hook-pri--top { background: var(--color-sand); color: var(--color-black); }
 
-  /* lo que decís */
-  .says { margin: 0; }
-  .says__row { padding: var(--space-12) 0; border-bottom: 1px solid var(--color-dark-grey-10); }
-  .says__row:last-child { border-bottom: none; }
-  .says__beat {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-size: 10px;
-    font-weight: var(--fw-bold);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-    color: var(--color-white);
-    background: var(--color-gold);
-    padding: 3px 8px;
-    border-radius: 3px;
-    margin-bottom: var(--space-8);
+  /* shot table */
+  .shot-table { width: 100%; border-collapse: collapse; margin: var(--space-12) 0 0; font-size: 14px; }
+  .shot-table thead th {
+    background: var(--color-sand); color: var(--color-black);
+    font-family: var(--font-display); font-size: 10px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; text-align: left;
+    padding: 8px 12px;
   }
-  .says__beat--cta { background: var(--color-sand); color: var(--color-black); }
-  .says__text { margin: 0; line-height: 1.55; }
+  .shot-table td { padding: 12px; vertical-align: top; border-bottom: 1px solid var(--color-dark-grey-10); line-height: 1.5; }
+  .shot-table tr:last-child td { border-bottom: none; }
+  .shot-table .col-time { width: 18%; font-family: var(--font-display); font-weight: var(--fw-bold); color: var(--color-ocean-slate); font-size: 12.5px; }
+  .shot-table .col-audio { width: 47%; }
+  .shot-table .col-visual { width: 35%; color: var(--color-dark-grey-70); font-size: 13px; }
+  .shot-table .said { color: var(--color-black); }
+  .shot-table .speaker { font-weight: var(--fw-bold); color: var(--color-gold); }
+  .shot-table .screen-text { font-weight: var(--fw-bold); color: var(--color-ocean-slate); }
+  .shot-table tbody tr:nth-child(even) td { background: rgba(40,44,47,0.018); }
 
-  .divider {
-    height: 1px;
-    background: var(--color-dark-grey-10);
-    border: none;
-    margin: var(--space-16) 0 var(--space-8);
+  /* primary text */
+  .ptext {
+    margin-top: var(--space-24); background: var(--color-sand-20);
+    border-radius: var(--radius); padding: var(--space-16) var(--space-24);
   }
+  .ptext__label {
+    font-family: var(--font-display); font-size: 10px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; color: var(--color-gold);
+    display: block; margin-bottom: 6px;
+  }
+  .ptext p { margin: 0; font-style: italic; line-height: 1.55; }
+  .ptext .btn-form { margin-top: var(--space-12); font-style: normal; font-size: 13px; color: var(--color-dark-grey-70); }
+  .ptext .btn-form strong { color: var(--color-black); }
+
+  /* nota set */
+  .nota {
+    border: 1px solid var(--color-gold); border-left: 4px solid var(--color-gold);
+    background: rgba(135,107,70,0.06); border-radius: var(--radius);
+    padding: var(--space-16) var(--space-24); margin: var(--space-24) 0 0;
+  }
+  .nota__label {
+    font-family: var(--font-display); font-size: 10px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; color: var(--color-gold);
+    display: block; margin-bottom: 6px;
+  }
+  .nota p { margin: 0; font-size: 14px; line-height: 1.5; }
+
+  .clip-note { font-size: 13px; color: var(--color-dark-grey-70); margin: var(--space-16) 0 0; line-height: 1.5; }
+  .clip-note strong { color: var(--color-black); }
+
+  hr.divider { height: 1px; background: var(--color-dark-grey-10); border: none; margin: var(--space-24) 0 var(--space-8); }
+
+  /* order section */
+  .order {
+    background: var(--color-dark-grey); color: var(--color-white);
+    border-radius: var(--radius); padding: var(--space-32); margin-top: var(--space-32);
+  }
+  .order__label {
+    font-family: var(--font-display); font-size: 11px; font-weight: var(--fw-bold);
+    letter-spacing: var(--tracking-meta); text-transform: uppercase; color: var(--color-sand);
+    display: block; margin-bottom: var(--space-12);
+  }
+  .order h3 { font-family: var(--font-display); font-size: 14px; color: var(--color-sand); margin: var(--space-24) 0 var(--space-8); letter-spacing: var(--tracking-cta); text-transform: uppercase; }
+  .order h3:first-of-type { margin-top: var(--space-16); }
+  .order ul { margin: 0; padding-left: 18px; }
+  .order li { margin-bottom: var(--space-8); line-height: 1.55; color: rgba(255,251,249,0.88); }
+  .order strong { color: var(--color-white); }
+  .order p { color: rgba(255,251,249,0.88); margin: 0 0 var(--space-8); }
 
   .doc-footer {
-    margin-top: var(--space-48);
-    padding-top: var(--space-24);
+    margin-top: var(--space-48); padding-top: var(--space-24);
     border-top: 1px solid var(--color-dark-grey-10);
-    font-family: var(--font-display);
-    font-size: 11px;
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-    color: var(--color-dark-grey-60);
-    display: flex;
-    justify-content: space-between;
+    font-family: var(--font-display); font-size: 11px; letter-spacing: var(--tracking-meta);
+    text-transform: uppercase; color: var(--color-dark-grey-60);
+    display: flex; justify-content: space-between;
   }
 
-  /* --- Print: HTML → PDF vía Cmd+P --- */
-  @page { size: A4; margin: 14mm; }
+  /* --- Print --- */
+  @page { size: A4; margin: 13mm; }
   @media print {
     body { background: #fff; }
     .page { max-width: none; padding: 0; }
-    .ad { break-inside: avoid; }
-    .howto { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .tag, .says__beat, .ad__num, .howto__label { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .ad, .changelog, .callout, .claims, .order, .nota { break-inside: avoid; }
+    .changelog, .claims, .order { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .shot-table thead th, .tag, .ad__num, .changelog__label, .ptext, .ad__naming { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
@@ -282,179 +312,405 @@
         <path fill="#282c2f" d="M1010.6,406.3c-19.9,0-37,16.2-37,43.2v-40.4h-25.7v115.6h25.9v-56.2c0-16.9,2.3-37.7,29.1-37.7h24.5v-24.5h-16.9Z"/>
       </svg>
     </div>
-    <div class="doc-header__meta">
-      Machete de rodaje<br>Lebane · 7 ADs
-    </div>
+    <div class="doc-header__meta">Machete de rodaje<br>Lebane · 7 ADs + 3 híbridos</div>
   </header>
 
-  <h1 class="doc-title">Machete de rodaje — Guiones Lebane</h1>
-  <p class="doc-sub">Bruno · co-founder · para leer antes de grabar</p>
+  <h1 class="doc-title">Guiones Lebane — versión Bruno (founder)</h1>
+  <p class="doc-sub">Speaker: Bruno (co-founder) · locación cowork · voz de diagnóstico con autoridad de founder</p>
+  <p class="doc-version">Versión corregida — claims verificados, claims fixes y orden de rodaje. 7 ads + 3 híbridos.</p>
 
-  <div class="howto">
-    <span class="howto__label">Cómo usarlo</span>
-    <p>En cada ad grabás <strong>todas las opciones de hook</strong> (la mejor se elige en la edición). Después viene el cuerpo: lo decís de corrido. En el bloque de solución usás el celular / la app de verdad — la pantalla es lo que da credibilidad. El registro de cada ad va en itálica al lado del título.</p>
-  </div>
+  <!-- ===== CONTROL DE CAMBIOS ===== -->
+  <section class="changelog">
+    <span class="changelog__label">Control de cambios — qué se tocó respecto del borrador</span>
+    <ul>
+      <li><strong>Consultas a LENA por WhatsApp:</strong> toda consulta de "avances / desvíos / facturas pendientes" pedida a LENA se reemplazó por consultas verificadas en Intercom (posición de caja, egresos, cheques por vencer). El avance / curvas y la rentabilidad siguen mostrándose en el dashboard de la app, que sí lo soporta.</li>
+      <li><strong>"+400 desarrolladoras" → "+300":</strong> estandarizado en AD #7 e Híbrido #2 (número sancionado y defendible, ~327).</li>
+      <li><strong>AD #1:</strong> se agregó el Hook C que faltaba.</li>
+      <li><strong>AD #2:</strong> Hook A ("como hace 10 años") marcado como menor prioridad; priorizar B o C.</li>
+      <li><strong>"Desde el celular" = WhatsApp / LENA</strong> (no hay app móvil nativa).</li>
+      <li><strong>Grupo Portland:</strong> marcado para confirmar autorización antes de publicar. Briones está OK (es Beltrán).</li>
+      <li><strong>Naming:</strong> prefijo de formato <strong>FOUNDER</strong> en lugar de UGC.</li>
+    </ul>
+    <p class="legend">Referencias: líneas con consultas verificadas = corregidas · bloques con borde dorado = nota para el set.</p>
+  </section>
+
+  <!-- ===== SETUP COMÚN ===== -->
+  <section class="callout">
+    <span class="callout__label">Setup común a los 7 — leer antes de filmar</span>
+    <p>Estas reglas se aplican a todos los guiones. En cada ad solo se aclara lo específico.</p>
+
+    <div class="setup-grp">
+      <p class="setup-grp__h">Vestuario</p>
+      <ul>
+        <li>Founder-casual real: remera lisa o camisa simple sin corbata, buzo/sweater liso. Tonos neutros.</li>
+        <li>Remera <strong>sin logos ni estampas</strong> que distraigan (en plano cerrado el ojo se va ahí).</li>
+        <li>Lavalier inalámbrico en la mano, como en todos los ganadores: se ve pro pero nativo.</li>
+      </ul>
+    </div>
+
+    <div class="setup-grp">
+      <p class="setup-grp__h">Locación y cuadro (cowork)</p>
+      <ul>
+        <li><strong>Plano medio corto y cerrado</strong>, fondo desenfocado (apertura baja). Cuanto menos cowork se ve, mejor.</li>
+        <li>Buscar el rincón más sobrio: pared lisa detrás. Evitar vidrios, cartelería del cowork, el salón abierto, la gente que pasa y la estética "tech bro".</li>
+        <li><strong>La pantalla es el héroe:</strong> monitor o celular con la app de Lebane mostrando data real (rentabilidad, costos, chat con Lena). Es lo que ancla "esto es de constructoras" ahora que no hay obra ni ropa de trabajo.</li>
+        <li>Props de contexto, sin exagerar: un <strong>casco apoyado y fuera de foco</strong> (nunca puesto), con algo de uso. Un solo casco basta.</li>
+        <li>Señales de trabajo real, no desorden: café/mate a medio tomar, notas a mano, laptop abierta y encendida, celular a mano. Que parezca que Bruno se sentó a seguir laburando, no que prepararon la mesa para una foto.</li>
+      </ul>
+    </div>
+
+    <div class="setup-grp">
+      <p class="setup-grp__h">Audio</p>
+      <ul>
+        <li>Los coworks tienen eco y ruido (AC, gente, teléfonos). Grabar en el horario más muerto, lejos de la zona de paso, y chequear el reverb antes de la toma buena. Audio sucio mata retención más rápido que un fondo feo.</li>
+      </ul>
+    </div>
+
+    <div class="setup-grp">
+      <p class="setup-grp__h">B-roll portátil (clave)</p>
+      <ul>
+        <li>El B-roll de la app y del chat con Lena se filma aparte, bien legible en celular, y se corta en el split screen. Así, la credibilidad de construcción vive en la pantalla y no depende de que el cowork "parezca" obra.</li>
+      </ul>
+    </div>
+
+    <div class="setup-grp">
+      <p class="setup-grp__h">Naming</p>
+      <ul>
+        <li>Mantener la nomenclatura, pero usar <strong>FOUNDER</strong> en lugar de UGC. Ej: FOUNDER_Margen-ciego_…</li>
+      </ul>
+    </div>
+
+    <div class="claims">
+      <span class="claims__label">Claims — repertorio verificado de LENA por WhatsApp (leer antes del B-roll)</span>
+      <p>Cualquier split-screen en el que Bruno le pida algo a LENA por WhatsApp tiene que mostrar una consulta real. Estas son las consultas verificadas en Intercom:</p>
+      <ul>
+        <li>¿Posición de caja del Proyecto [X] a hoy?</li>
+        <li>¿Total de egresos del Proyecto [X] este mes?</li>
+        <li>¿Cheques por vencer esta semana?</li>
+        <li>Saldo de cuenta corriente de clientes</li>
+        <li>Proyecciones de ingresos · precio promedio por m²</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <span class="nota__label">Nota set</span>
+      <p>"Avances de obra" y "desvíos" NO figuran como consultas que LENA responde por WhatsApp. El avance/curvas físicas y la rentabilidad sí se ven en el dashboard de la app (eso es OK en pantalla). Si Bruno confirma en el set que hoy LENA sí da avances, se puede dejar; si no, usar las consultas de arriba. Bonus: son más financieras → refuerzan el ángulo de plata.</p>
+    </div>
+  </section>
 
   <p class="section-eyebrow">7 ADs · Bruno solo a cámara</p>
 
   <!-- ===================== AD 1 ===================== -->
   <article class="ad">
     <span class="ad__num">AD 1</span>
-    <h2 class="ad__title">El margen ciego</h2>
-    <p class="ad__register">El ganador validado · autoridad, firme — no lo sufriste, lo diagnosticás</p>
+    <h2 class="ad__title">El margen ciego — el ganador validado</h2>
+    <p class="ad__naming">FOUNDER_Margen-ciego_No-saben-cuanto-ganaron_30s</p>
+    <p class="ad__meta">Bruno (co-founder) · 28–32s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> El pain #1 y el del CPL más barato ($4.743). En voz de founder mejora: Bruno no "sufrió" el problema; lo diagnostica tras haber visto cientos de casos. Pasa de testimonio a autoridad.</p>
 
-    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <p class="block-label">Hooks (0–4s — grabar los 3)</p>
     <ul class="hooks">
       <li><span class="tag">A</span><span>Hay desarrolladoras que terminan un desarrollo y no saben cuánta plata ganaron.</span></li>
       <li><span class="tag">B</span><span>Vendés todo el desarrollo y ganaste menos de lo que creés.</span></li>
+      <li><span class="tag">C</span><span>El margen real de tu desarrollo no está en ningún Excel: aparece meses tarde, cuando ya no podés corregir nada.</span></li>
     </ul>
 
-    <hr class="divider">
-    <p class="block-label">Lo que decís</p>
-    <div class="says">
-      <div class="says__row"><span class="says__beat">Diagnóstico</span><p class="says__text">Y no es por malos. El número real recién aparece meses después de entregar.</p></div>
-      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Mientras tanto los desvíos, los sobrecostos y la inflación se comen el margen en silencio.</p></div>
-      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Con Lebane ves en tiempo real dónde está cada peso: el costo, el avance y la rentabilidad real de cada proyecto. No esperás a fin de obra para saber si ganaste.</p></div>
-      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">Los que controlan en tiempo real ya lo están haciendo. Apretá el botón si querés saber cómo.</p></div>
-    </div>
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook</td><td class="col-audio"><span class="said">Hook A / B / C</span></td><td class="col-visual">A cámara, plano medio corto, fondo de cowork desenfocado. Lavalier en mano. Subtítulos grandes desde el segundo 1.</td></tr>
+        <tr><td class="col-time">4–9s · Diagnóstico</td><td class="col-audio"><span class="said">"Y no es por malos. El número real recién aparece meses después de entregar."</span></td><td class="col-visual">Bruno firme, leve gesto. Texto: <span class="screen-text">"MESES DESPUÉS"</span></td></tr>
+        <tr><td class="col-time">9–16s · Agitación</td><td class="col-audio"><span class="said">"Mientras tanto los desvíos, los sobrecostos y la inflación se comen el margen en silencio."</span></td><td class="col-visual">Texto: <span class="screen-text">"DESVÍOS / SOBRECOSTOS / INFLACIÓN"</span></td></tr>
+        <tr><td class="col-time">16–25s · Solución</td><td class="col-audio"><span class="said">"Con Lebane ves en tiempo real dónde está cada peso: el costo, el avance y la rentabilidad real de cada proyecto. No esperás a fin de obra para saber si ganaste."</span></td><td class="col-visual"><span class="screen-text">Split screen</span>: Bruno / la app mostrando margen y costos en tiempo real. (B-roll portátil, legible. El avance va en el dashboard → OK.)</td></tr>
+        <tr><td class="col-time">25–30s · CTA</td><td class="col-audio"><span class="said">"Los que controlan en tiempo real ya lo están haciendo. Apretá el botón si querés saber cómo."</span></td><td class="col-visual">Plano un poco más abierto. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>La mayoría de las desarrolladoras no sabe cuánta plata ganó hasta meses después de entregar el desarrollo. Para entonces, los desvíos y la inflación ya se comieron el margen. Con Lebane ves tu rentabilidad real en tiempo real.</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
   </article>
 
   <!-- ===================== AD 2 ===================== -->
   <article class="ad">
     <span class="ad__num">AD 2</span>
-    <h2 class="ad__title">El cambio no es el riesgo</h2>
-    <p class="ad__register">Tranquilo, cercano — SIN dedo acusador (nada de "estás atrasado")</p>
+    <h2 class="ad__title">El cambio no es el riesgo <span style="font-weight:var(--fw-regular);font-size:15px;color:var(--color-dark-grey-70);">(ex "Como hace 10 años")</span></h2>
+    <p class="ad__naming">FOUNDER_El-cambio-no-es-el-riesgo_35s</p>
+    <p class="ad__meta">Bruno (co-founder) · 32–38s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> Reescrito como insight de founder y sin el dedo acusador del "seguís como hace 10 años" (en boca del founder sonaría a "el del software te dice que estás atrasado" = el vibe que peor convirtió en MX). Se conserva el remate validado.</p>
 
-    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <p class="block-label">Hooks (0–4s)</p>
     <ul class="hooks">
-      <li><span class="tag">A</span><span>"El mayor riesgo de una constructora hoy no es la obra. Es gestionarla como hace 10 años."</span></li>
-      <li><span class="tag">B</span><span>Si seguís tus obras con planillas, los que controlan en tiempo real te sacan ventaja.</span></li>
-      <li><span class="tag">C</span><span>"Cambiar de Excel es un riesgo." Es la objeción que más escucho. Y es al revés.</span></li>
+      <li><span class="tag">A</span><span>"El mayor riesgo de una constructora hoy no es la obra. Es gestionarla como hace 10 años." <span class="hook-pri hook-pri--low">Baja prioridad / test</span></span></li>
+      <li><span class="tag">B</span><span>Si seguís tus obras con planillas, los que controlan en tiempo real te sacan ventaja. <span class="hook-pri hook-pri--top">Priorizar</span></span></li>
+      <li><span class="tag">C</span><span>"Cambiar de Excel es un riesgo." Es la objeción que más escucho. Y es al revés. <span class="hook-pri hook-pri--top">Priorizar</span></span></li>
     </ul>
 
-    <hr class="divider">
-    <p class="block-label">Lo que decís</p>
-    <div class="says">
-      <div class="says__row"><span class="says__beat">Objeción</span><p class="says__text">Cuando alguien arranca con Lebane casi siempre llega con el mismo miedo: que el equipo no se adapte, que mejor quedarse con lo conocido. Es entendible. Pero en una semana ya están manejando todo desde el celular.</p></div>
-      <div class="says__row"><span class="says__beat">Dolor real</span><p class="says__text">Y lo veo en cada constructora que arranca: no es que falte trabajo, es que los números aparecen siempre tarde. El que ya se modernizó cierra el mes en cinco minutos y sabe exactamente cuánto ganó. Esa es la diferencia.</p></div>
-      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Lebane centraliza toda la operación: costos, avances, rentabilidad. Le preguntás a Lena por WhatsApp y te responde sin moverte de la obra.</p></div>
-      <div class="says__row"><span class="says__beat says__beat--cta">Quiebre + CTA</span><p class="says__text">El cambio no es el riesgo. El riesgo es seguir igual. Mientras lo pensás, otros ya lo están usando — apretá el botón si querés saber cómo.</p></div>
-    </div>
+    <div class="nota"><span class="nota__label">Nota set</span><p>#2 es el ad de mayor riesgo en voz de founder. Priorizar Hook B (ventaja/FOMO) o C (objeción reframeada). Dejar A solo como variante de test de baja prioridad para que no suene a "el del software te reta".</p></div>
+
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook</td><td class="col-audio"><span class="said">Hook B / C (A solo como test)</span></td><td class="col-visual">A cámara, plano cerrado, cowork desenfocado. Lavalier. Subtítulos grandes desde el segundo 1.</td></tr>
+        <tr><td class="col-time">4–14s · Objeción</td><td class="col-audio"><span class="said">"A casi todos los que arrancan les pasa lo mismo: les dijeron que pasar de Excel a un sistema era un riesgo, que el equipo no se iba a adaptar, que mejor quedarse con lo conocido. Pero a la semana lo usan solos y nadie quiere volver al Excel."</span></td><td class="col-visual">Bruno tranquilo, cercano. Texto: <span class="screen-text">"ERA UN RIESGO"</span>. Casco apoyado y fuera de foco (sacar si el plano es 100% cowork).</td></tr>
+        <tr><td class="col-time">14–22s · El dolor real</td><td class="col-audio"><span class="said">"Y el que sigue igual no se da cuenta, pero los números le aparecen siempre tarde. Ahí, en silencio, se le va la plata."</span></td><td class="col-visual">Gesto firme, ritmo un poco más arriba. Texto: <span class="screen-text">"SE TE VA LA PLATA"</span> (entra con la palabra).</td></tr>
+        <tr><td class="col-time">22–30s · Solución</td><td class="col-audio"><span class="said">"Lebane centraliza toda la operación: costos, avances, rentabilidad. Le preguntás a Lena por WhatsApp cómo vienen tus números y te responde en segundos, sin moverte de la obra."</span></td><td class="col-visual">Bruno saca el celular y lo usa de verdad. <span class="screen-text">Split screen</span>: Bruno / chat de WhatsApp con Lena. Se ve una consulta verificada respondida (posición de caja, egresos o cheques por vencer). B-roll portátil, legible.</td></tr>
+        <tr><td class="col-time">30–35s · Quiebre + CTA</td><td class="col-audio"><span class="said">"El cambio no es el riesgo. El riesgo es seguir igual. Mientras lo pensás, otros ya lo están usando — apretá el botón si querés saber cómo."</span></td><td class="col-visual">Plano más abierto. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>La objeción que más escucho es que cambiar de Excel a un sistema es un riesgo. El verdadero riesgo es seguir gestionando tus desarrollos sin ver tus números en tiempo real. Mientras lo pensás, otros ya están controlando todo desde el celular.</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
   </article>
 
   <!-- ===================== AD 3 ===================== -->
   <article class="ad">
     <span class="ad__num">AD 3</span>
-    <h2 class="ad__title">Las fugas invisibles</h2>
-    <p class="ad__register">Dolor observacional, calmo</p>
+    <h2 class="ad__title">Las fugas invisibles <span style="font-weight:var(--fw-regular);font-size:15px;color:var(--color-dark-grey-70);">(Pain 2)</span></h2>
+    <p class="ad__naming">FOUNDER_Fugas-invisibles_Plata-que-se-escapa_28s</p>
+    <p class="ad__meta">Bruno (co-founder) · 25–30s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> Dolor observacional, territorio natural del founder. Casi sin cambios de fondo, solo la voz.</p>
 
-    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <p class="block-label">Hooks (0–4s — grabar los 3)</p>
     <ul class="hooks">
       <li><span class="tag">A</span><span>En cada desarrollo se pierde margen. Y no aparece en ningún Excel.</span></li>
       <li><span class="tag">B</span><span>Los desvíos y los sobrecostos se comen el margen en silencio. Y la desarrolladora se entera cuando ya es tarde.</span></li>
       <li><span class="tag">C</span><span>Lo que no se controla en tiempo real, se termina pagando. Siempre.</span></li>
     </ul>
 
-    <hr class="divider">
-    <p class="block-label">Lo que decís</p>
-    <div class="says">
-      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Una parte de la info está en los presupuestos, otra en lo del contador, el resto en un Excel que nadie actualiza. Nadie tiene el número entero. Y justo ahí, en el medio, se escapa la ganancia.</p></div>
-      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Lebane junta toda la operación en un solo lugar. Le preguntás a Lena por WhatsApp cómo viene el presupuesto, los pagos, los avances… y te responde en segundos.</p></div>
-      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">Los que cerraron el desvío no vuelven a las planillas sueltas. Apretá el botón si querés saber cómo.</p></div>
-    </div>
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook</td><td class="col-audio"><span class="said">Hook A / B / C</span></td><td class="col-visual">A cámara, plano cerrado, cowork desenfocado. Lavalier. Subtítulos grandes.</td></tr>
+        <tr><td class="col-time">4–13s · Agitación</td><td class="col-audio"><span class="said">"Una parte de la info está en los presupuestos, otra en lo del contador, el resto en un Excel que nadie actualiza. Nadie tiene el número entero. Y justo ahí, en el medio, se escapa la ganancia."</span></td><td class="col-visual">Texto: <span class="screen-text">"PRESUPUESTOS / CONTADOR / EXCEL"</span> apareciendo dispersos.</td></tr>
+        <tr><td class="col-time">13–22s · Solución</td><td class="col-audio"><span class="said">"Lebane junta toda la operación en un solo lugar. Podés preguntarle a Lena por WhatsApp la posición de caja, los egresos del mes o los cheques por vencer… y te responde en segundos."</span></td><td class="col-visual">Bruno con el celular, usándolo. <span class="screen-text">Split screen</span>: Bruno / app + chat con Lena (consulta verificada en pantalla). Los textos dispersos colapsan en uno = Lebane.</td></tr>
+        <tr><td class="col-time">22–28s · CTA</td><td class="col-audio"><span class="said">"Los que cerraron el desvío no vuelven a las planillas sueltas. Apretá el botón si querés saber cómo."</span></td><td class="col-visual">Plano más abierto. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>En cada desarrollo se escapa margen: una parte está en los presupuestos, otra en lo del contador, el resto en un Excel que nadie actualiza. Nadie tiene el número entero. Lebane junta toda la operación en un solo lugar y le preguntás lo que quieras a Lena por WhatsApp.</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
   </article>
 
   <!-- ===================== AD 4 ===================== -->
   <article class="ad">
     <span class="ad__num">AD 4</span>
-    <h2 class="ad__title">Apagar incendios</h2>
-    <p class="ad__register">Empatía / hartazgo del cliente (no seriedad financiera) — patrón observado, no en primera persona</p>
+    <h2 class="ad__title">Apagar incendios <span style="font-weight:var(--fw-regular);font-size:15px;color:var(--color-dark-grey-70);">(Pain 4 — ángulo emocional)</span></h2>
+    <p class="ad__naming">FOUNDER_Apagar-incendios_Descontrol-operativo_30s</p>
+    <p class="ad__meta">Bruno (co-founder) · 28–32s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> Ángulo del desgaste operativo, no del bolsillo. Se dice como patrón observado ("los constructores con los que hablo"), no en primera persona.</p>
 
-    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <div class="nota"><span class="nota__label">Nota estrategia</span><p>Ángulo operativo/emocional. La data de LinkedIn MX tiene el ángulo financiero ganándole 2.5x al operativo. Filmarlo como TEST; no cargarle el presupuesto. El peso lo llevan los de plata (#1, #6, #7 e híbridos).</p></div>
+
+    <p class="block-label">Hooks (0–4s — grabar los 3)</p>
     <ul class="hooks">
       <li><span class="tag">A</span><span>Si cada vez que el dueño se va de la obra todo se prende fuego, no es un problema de equipo. Es un problema de información.</span></li>
       <li><span class="tag">B</span><span>Hablo todos los días con constructores que pasan el día apagando incendios y a la noche todavía no saben cómo vienen. ¿Te suena?</span></li>
       <li><span class="tag">C</span><span>Si tu obra no puede funcionar un día sin vos, no sos imprescindible. Estás atrapado.</span></li>
     </ul>
 
-    <hr class="divider">
-    <p class="block-label">Lo que decís</p>
-    <div class="says">
-      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Te llaman por un pago, por un material que no llegó, por una requisición perdida en un WhatsApp. Vivís corriendo atrás de los datos en vez de decidir con ellos. Y así es imposible despegarte.</p></div>
-      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Con Lebane está todo en un lugar y en tiempo real. Desde WhatsApp pedís el reporte de avances, los pagos del día o las facturas pendientes, y los tenés en segundos. Dejás de apagar incendios y empezás a decidir.</p></div>
-      <div class="says__row"><span class="says__beat says__beat--cta">Quiebre + CTA</span><p class="says__text">El control no es trabajar más. Es tener la info cuando la necesitás. Apretá el botón si querés saber cómo.</p></div>
-    </div>
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook</td><td class="col-audio"><span class="said">Hook A / B / C</span></td><td class="col-visual">A cámara, plano cerrado. Lavalier. Subtítulos grandes.</td></tr>
+        <tr><td class="col-time">4–13s · Agitación</td><td class="col-audio"><span class="said">"Te llaman por un pago, por un material que no llegó, por una requisición perdida en un WhatsApp. Vivís corriendo atrás de los datos en vez de decidir con ellos. Y así es imposible despegarte."</span></td><td class="col-visual">Ritmo más picado (varios reclamos seguidos = caos). Texto: <span class="screen-text">"PAGOS / MATERIALES / REQUISICIONES"</span></td></tr>
+        <tr><td class="col-time">13–23s · Solución</td><td class="col-audio"><span class="said">"Con Lebane está todo en un lugar y en tiempo real. Desde WhatsApp pedís la posición de caja, los egresos del día o los cheques por vencer, y los tenés en segundos. Dejás de apagar incendios y empezás a decidir."</span> <span style="color:var(--color-dark-grey-70);font-size:13px;">(consultas corregidas a verificadas de LENA)</span></td><td class="col-visual">Celular en mano, usándolo. <span class="screen-text">Split screen</span>: Bruno / app + chat con el bot. Que se vea pidiendo "posición de caja del Proyecto X" o "cheques por vencer".</td></tr>
+        <tr><td class="col-time">23–30s · Quiebre + CTA</td><td class="col-audio"><span class="said">"El control no es trabajar más. Es tener la info cuando la necesitás. Apretá el botón si querés saber cómo."</span></td><td class="col-visual">Plano más abierto. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>Pagos, materiales que no llegaron, requisiciones perdidas en un WhatsApp: el día se va corriendo atrás de los datos en vez de decidir con ellos. Así es imposible despegarte de la obra. Con Lebane tenés todo en un solo lugar y en tiempo real, y desde WhatsApp pedís la posición de caja, los egresos del día o los cheques por vencer.</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
   </article>
 
   <!-- ===================== AD 5 ===================== -->
   <article class="ad">
     <span class="ad__num">AD 5</span>
-    <h2 class="ad__title">Por qué construimos Lebane</h2>
-    <p class="ad__register">Historia de origen — narrativo, tranquilo: "vi el problema y lo construí"</p>
+    <h2 class="ad__title">Por qué construimos Lebane <span style="font-weight:var(--fw-regular);font-size:15px;color:var(--color-dark-grey-70);">(historia de origen)</span></h2>
+    <p class="ad__naming">FOUNDER_Historia-de-origen_Por-que-construimos-Lebane_35s</p>
+    <p class="ad__meta">Bruno (co-founder) · 32–38s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> El #5 original era una transformación en primera persona que NO sobrevive en voz de founder. Reconvertido al molde más fuerte que sí tiene un founder: la historia de origen ("vi este problema y construí la solución"). Si rinde, es un molde nuevo y escalable.</p>
 
-    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <p class="block-label">Hooks (0–4s — grabar los 3)</p>
     <ul class="hooks">
       <li><span class="tag">A</span><span>Construimos Lebane porque nos cansamos de ver desarrolladores que no sabían cuánto ganaban en cada obra.</span></li>
       <li><span class="tag">B</span><span>Antes de Lebane, los desarrolladores con los que trabajaba cruzaban tres Excels para saber un solo número. Te cuento qué cambió.</span></li>
       <li><span class="tag">C</span><span>Lebane nació de un problema concreto: la rentabilidad real aparecía siempre tarde, cuando ya no se podía corregir nada.</span></li>
     </ul>
 
-    <hr class="divider">
-    <p class="block-label">Lo que decís</p>
-    <div class="says">
-      <div class="says__row"><span class="says__beat">El antes</span><p class="says__text">Lo veía siempre: el presupuesto en un Excel, la contabilidad en otro lado, los pagos en un tercero. Y la rentabilidad real recién cuando el contador cerraba el mes… cuando ya no se podía corregir nada.</p></div>
-      <div class="says__row"><span class="says__beat">El después</span><p class="says__text">Por eso armamos Lebane: todo en una sola plataforma y en tiempo real. Ves el presupuesto contra lo que llevás gastado, el avance de cada obra, y desde WhatsApp le pedís a Lena los pagos del día o el reporte de avances sin moverte de la obra.</p></div>
-      <div class="says__row"><span class="says__beat says__beat--cta">Resultado + CTA</span><p class="says__text">Hoy los que lo usan dejaron de cerrar el mes a ciegas y de enterarse tarde de los desvíos. Si manejás varios proyectos y todavía vas con planillas, apretá el botón y mirá cómo funciona.</p></div>
-    </div>
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook</td><td class="col-audio"><span class="said">Hook A / B / C</span></td><td class="col-visual">A cámara, plano cerrado, cowork desenfocado. Lavalier. Tono narrativo y tranquilo, de alguien que ya resolvió el problema.</td></tr>
+        <tr><td class="col-time">4–13s · El "antes"</td><td class="col-audio"><span class="said">"Lo veía siempre: el presupuesto en un Excel, la contabilidad en otro lado, los pagos en un tercero. Y la rentabilidad real recién cuando el contador cerraba el mes… cuando ya no se podía corregir nada."</span></td><td class="col-visual">Texto: <span class="screen-text">"EXCEL / CONTABILIDAD / PAGOS"</span> disperso. Planos más cargados para el "antes".</td></tr>
+        <tr><td class="col-time">13–25s · El "después"</td><td class="col-audio"><span class="said">"Por eso armamos Lebane: todo en una sola plataforma y en tiempo real. Ves el presupuesto contra lo que llevás gastado, el avance de cada obra, y desde WhatsApp le pedís a Lena estatus financiero."</span></td><td class="col-visual">Celular en mano. <span class="screen-text">Split screen</span>: Bruno / app (dashboard de presupuesto + chat WhatsApp con consulta verificada). Estética más limpia para el "después".</td></tr>
+        <tr><td class="col-time">25–35s · Resultado + CTA</td><td class="col-audio"><span class="said">"Hoy los que lo usan dejaron de cerrar el mes a ciegas y de enterarse tarde de los desvíos. Si manejás varios proyectos y todavía vas con planillas, apretá el botón y mirá cómo funciona."</span></td><td class="col-visual">Plano más abierto. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>Construí Lebane porque veía siempre lo mismo: tres Excel cruzados y la rentabilidad real recién cuando el contador cerraba el mes. Hoy con Lebane está todo en una sola plataforma y en tiempo real: presupuesto y avances de obra en el dashboard y, desde WhatsApp, la posición de caja o los cheques por vencer en segundos. Se dejó de cerrar el mes a ciegas.</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
   </article>
 
   <!-- ===================== AD 6 ===================== -->
   <article class="ad">
     <span class="ad__num">AD 6</span>
-    <h2 class="ad__title">El verdadero freno de tu empresa</h2>
-    <p class="ad__register">Status / crecimiento — afirmación contraintuitiva con autoridad</p>
+    <h2 class="ad__title">El verdadero freno de tu empresa <span style="font-weight:var(--fw-regular);font-size:15px;color:var(--color-dark-grey-70);">(caos operativo / crecimiento)</span></h2>
+    <p class="ad__naming">FOUNDER_Caos-operativo_Freno-crecimiento_28s</p>
+    <p class="ad__meta">Bruno (co-founder) · 24–28s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> Ángulo de status/crecimiento. Funciona bien en voz de founder, que puede hacer la afirmación contraintuitiva ("no necesitás más proyectos") con autoridad.</p>
 
-    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <p class="block-label">Hooks (0–4s — grabar los 3)</p>
     <ul class="hooks">
       <li><span class="tag">A</span><span>Muchos constructores creen que, para crecer, necesitan meter más proyectos. En realidad, necesitan dejar de perder margen en los que ya tienen.</span></li>
       <li><span class="tag">B</span><span>Si para saber cómo vienen los números de tu obra tenés que frenar el día y armar una reunión de dos horas, no tenés el control de tu empresa.</span></li>
       <li><span class="tag">C</span><span>El freno de la mayoría de las constructoras no es la falta de ventas. Es el caos operativo.</span></li>
     </ul>
 
-    <hr class="divider">
-    <p class="block-label">Lo que decís</p>
-    <div class="says">
-      <div class="says__row"><span class="says__beat">Agitación</span><p class="says__text">Podés vender todo el desarrollo, pero si las requisiciones se pierden en WhatsApp, los materiales aumentan todas las semanas y los desvíos los ves un mes tarde… estás trabajando para cambiar plata, no para ganar margen.</p></div>
-      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Con Lebane, pasás del caos al control. Centralizás compras, costos y avances en un solo lugar. Le preguntás a Lena por WhatsApp el reporte de desvíos o los pagos del día y te responde en segundos, en tu celular.</p></div>
-      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">El orden es lo único que te permite escalar sin volverte loco. Los que ya controlan en tiempo real no vuelven atrás. Apretá el botón y mirá cómo funciona.</p></div>
-    </div>
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook</td><td class="col-audio"><span class="said">Hook A / B / C</span></td><td class="col-visual">Plano medio corto, Bruno firme, lavalier visible. Subtítulos grandes que claven el gancho en los primeros 3s.</td></tr>
+        <tr><td class="col-time">4–12s · Agitación</td><td class="col-audio"><span class="said">"Podés vender todo el desarrollo, pero si las requisiciones se pierden en WhatsApp, los materiales aumentan todas las semanas y los desvíos los ves un mes tarde… estás trabajando para cambiar plata, no para ganar margen."</span></td><td class="col-visual">Ritmo picado, sin silencios redundantes para sostener retención.</td></tr>
+        <tr><td class="col-time">12–22s · Solución</td><td class="col-audio"><span class="said">"Con Lebane, pasás del caos al control. Centralizás compras, costos y avances en un solo lugar. Le preguntás a Lena por WhatsApp tu estatus financiero o comercial y te responde en segundos, en tu celular."</span> <span style="color:var(--color-dark-grey-70);font-size:13px;">(consultas corregidas a verificadas de LENA)</span></td><td class="col-visual">Bruno saca el celular y muestra que interactúa. <span class="screen-text">Split screen</span>: Bruno / app con gráficos de control de costos + chat de WhatsApp respondiendo una consulta verificada.</td></tr>
+        <tr><td class="col-time">22–28s · CTA</td><td class="col-audio"><span class="said">"El orden es lo único que te permite escalar sin volverte loco. Los que ya controlan en tiempo real no vuelven atrás. Apretá el botón y mirá cómo funciona."</span></td><td class="col-visual">Plano entero. Gesto directo hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>¿Creés que para escalar tu constructora necesitás más proyectos? El verdadero riesgo no es la falta de ventas, es el caos operativo. Podés vender todo el desarrollo, pero si los desvíos y las requisiciones perdidas en WhatsApp se manejan a ciegas, estás cambiando plata en vez de ganar margen. Los que escalan en serio controlan sus números en tiempo real. Con Lebane centralizás toda la operación y le consultás lo que quieras a Lena por WhatsApp en segundos.</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
   </article>
 
   <!-- ===================== AD 7 ===================== -->
   <article class="ad">
     <span class="ad__num">AD 7</span>
-    <h2 class="ad__title">Los que ya controlan</h2>
-    <p class="ad__register">Social proof — autoridad founder + clientes · el más seguro</p>
+    <h2 class="ad__title">Los que ya controlan <span style="font-weight:var(--fw-regular);font-size:15px;color:var(--color-dark-grey-70);">(autoridad / social proof)</span></h2>
+    <p class="ad__naming">FOUNDER_Social-proof_Portland-Briones_28s</p>
+    <p class="ad__meta">Bruno (co-founder) · 25–30s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> El ad que MÁS gana con el cambio: Bruno es la voz natural para decir "esta es la plataforma que usan Portland y Briones". La autoridad la pone el founder + los clientes, y el fondo de cowork importa menos. Si el espacio queda genérico, este es el ad más seguro.</p>
 
-    <p class="block-label">Hooks — grabá todas las opciones</p>
+    <div class="nota"><span class="nota__label">Nota set</span><p>Grupo Briones está OK (es Beltrán). Grupo Portland: confirmar con el equipo que están autorizados a nombrarlo en ads pagados ANTES de publicar.</p></div>
+
+    <p class="block-label">Hooks (0–4s — grabar los 3)</p>
     <ul class="hooks">
       <li><span class="tag">A</span><span>Esta es la misma plataforma que usan Grupo Portland y Grupo Briones para controlar sus desarrollos.</span></li>
       <li><span class="tag">B</span><span>¿Querés saber con qué controlan los números las desarrolladoras más grandes? Te lo muestro.</span></li>
       <li><span class="tag">C</span><span>Grupo Portland y Grupo Briones dejaron de manejar sus obras a planilla. Hoy lo hacen con Lebane.</span></li>
     </ul>
 
-    <hr class="divider">
-    <p class="block-label">Lo que decís</p>
-    <div class="says">
-      <div class="says__row"><span class="says__beat">Autoridad</span><p class="says__text">Y no son los únicos: más de 400 desarrolladoras en la región ya operan con Lebane. ¿Por qué? Porque dejaron de enterarse tarde de los desvíos y de cerrar el mes a ciegas.</p></div>
-      <div class="says__row"><span class="says__beat">Solución</span><p class="says__text">Centralizan obra, finanzas y avances en una sola plataforma. Y desde WhatsApp le piden a Lena el reporte de avances o los pagos del día, sin moverse de la obra.</p></div>
-      <div class="says__row"><span class="says__beat says__beat--cta">CTA</span><p class="says__text">Si los que mueven el mercado ya lo están usando, ¿por qué vos no? Apretá el botón y mirá cómo funciona.</p></div>
-    </div>
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook</td><td class="col-audio"><span class="said">Hook A / B / C</span></td><td class="col-visual">A cámara, plano cerrado. Lavalier. Logos <span class="screen-text">PORTLAND · BRIONES</span> entran en s2–4 con la mención hablada. Limpios, en franja/esquina, sin tapar la cara. Variante test: logos desde s0.</td></tr>
+        <tr><td class="col-time">4–13s · Autoridad</td><td class="col-audio"><span class="said">"Y no son los únicos: más de 300 desarrolladoras en la región ya operan con Lebane. ¿Por qué? Porque dejaron de enterarse tarde de los desvíos y de cerrar el mes a ciegas."</span></td><td class="col-visual">Texto: <span class="screen-text">"+300 desarrolladoras"</span></td></tr>
+        <tr><td class="col-time">13–23s · Solución</td><td class="col-audio"><span class="said">"Centralizan obra, finanzas y avances en una sola plataforma. Y cargan sus facturas desde WhatsApp."</span> <span style="color:var(--color-dark-grey-70);font-size:13px;">(consulta a LENA corregida; avances quedan en el dashboard)</span></td><td class="col-visual">Celular en mano. <span class="screen-text">Split screen</span>: Bruno / app + chat con Lena (consulta verificada).</td></tr>
+        <tr><td class="col-time">23–28s · CTA</td><td class="col-audio"><span class="said">"Si los que mueven el mercado ya lo están usando, ¿por qué vos no? Apretá el botón y mirá cómo funciona."</span></td><td class="col-visual">Plano más abierto. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>Grupo Portland, Grupo Briones y más de 300 desarrolladoras de la región ya controlan sus números con Lebane. Centralizan obra, finanzas y avances en una sola plataforma y le piden a Lena por WhatsApp lo que necesiten, en segundos. Si los que mueven el mercado ya lo usan, ¿por qué vos no?</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
   </article>
+
+  <p class="section-eyebrow">Híbridos — hook de Beltrán + desarrollo de Bruno</p>
+
+  <section class="callout">
+    <p>Formato nuevo: abren con un clip testimonial real de Beltrán (Grupo Briones) que ya frena el scroll, y cortan a Bruno (founder) desarrollando el beneficio. Beltrán valida, Bruno da sustancia = el combo "validación + desarrollo" que separó los leads baratos de los cazadores de clics.</p>
+    <div class="setup-grp">
+      <p class="setup-grp__h">Dos reglas que no se rompen</p>
+      <ul>
+        <li><strong>Mismo ángulo en hook y cuerpo.</strong> Si el hook es de dolor financiero, Bruno desarrolla dolor financiero. Nunca un hook de dolor con un cuerpo de social proof.</li>
+        <li><strong>Cuidar el corte.</strong> Beltrán está en campo de golf (premium, otoñal); Bruno en el stand (otra luz, otra ropa). El salto brusco se siente "pegado con cinta". Cada guion trae su puente.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== HÍBRIDO 1 ===================== -->
+  <article class="ad ad--hybrid">
+    <span class="ad__num">Híbrido 1</span>
+    <h2 class="ad__title">"No saben cuánto ganaron" → Bruno (margen ciego)</h2>
+    <p class="ad__naming">HIB_Beltran-no-saben_Bruno-margen-ciego_28s</p>
+    <p class="ad__meta">Beltrán (hook) + Bruno (desarrollo) · 26–30s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> Dobla la apuesta al hook más barato de toda la cuenta ($4.743) y entra directo al desarrollo de margen ciego en voz de founder. Hook validado + el pain #1. Abre y cierra con el sello Grupo Briones.</p>
+
+    <p class="clip-note"><strong>Clip a usar para el hook:</strong> Beltran_No-saben-cuanto-ganaron_Testimonial_21s — usar el arranque (0:00–0:04).</p>
+    <p class="clip-note"><strong>El corte:</strong> sin línea-puente. Se corta directo de Beltrán a Bruno, que entra ya vendiendo con una condicional ("si querés…"). El zócalo "Bruno — fundador de Lebane" resuelve quién es. Red de seguridad: dejar correr 0,5s el audio de Beltrán por debajo del corte.</p>
+
+    <div class="nota"><span class="nota__label">Nota set</span><p>Grupo Portland se nombra en el CTA: confirmar autorización antes de publicar. Briones OK.</p></div>
+
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook (Beltrán)</td><td class="col-audio"><span class="speaker">BELTRÁN:</span> <span class="said">"Hay desarrolladoras que terminan una obra y realmente no saben cuánta plata ganaron."</span></td><td class="col-visual">Clip original de Beltrán en el campo de golf. Subtítulos dinámicos. Dejar respirar el hook.</td></tr>
+        <tr><td class="col-time">4–15s · Bruno (entra directo)</td><td class="col-audio"><span class="speaker">BRUNO:</span> <span class="said">"Si querés dejar de adivinar y ver los desvíos, los sobrecostos y lo que te come la inflación antes de que sea tarde… con Lebane lo ves en tiempo real, no a fin de obra."</span></td><td class="col-visual">Corte directo a Bruno en el stand, plano cerrado. Zócalo: <span class="screen-text">"Bruno — fundador de Lebane"</span>. Laptop abierta, pantalla prendida.</td></tr>
+        <tr><td class="col-time">15–23s · Solución (split)</td><td class="col-audio"><span class="speaker">BRUNO:</span> <span class="said">"El costo, el avance y la rentabilidad real de cada proyecto, al día. Dejás de enterarte tarde."</span></td><td class="col-visual">Bruno frente a la laptop, mostrando que consulta los datos. <span class="screen-text">Split screen</span>: Bruno / la app mostrando margen y costos en tiempo real (dashboard → OK).</td></tr>
+        <tr><td class="col-time">23–28s · CTA</td><td class="col-audio"><span class="speaker">BRUNO:</span> <span class="said">"Empresas como Grupo Portland y Grupo Briones ya lo están haciendo. Apretá el botón si querés saber cómo."</span></td><td class="col-visual">Bruno cierra la laptop con la última frase y mira a cámara (la tapa cae sobre "ya lo están haciendo"). Logos <span class="screen-text">PORTLAND · BRIONES</span> entran al nombrarlos. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Botón del form</span><p class="btn-form" style="margin-top:0;"><strong>"Registrarte" / "Más información"</strong></p></div>
+  </article>
+
+  <!-- ===================== HÍBRIDO 2 ===================== -->
+  <article class="ad ad--hybrid">
+    <span class="ad__num">Híbrido 2</span>
+    <h2 class="ad__title">"¿Estás usando Lebane?" → Bruno (el test de la tesis)</h2>
+    <p class="ad__naming">HIB_Beltran-estas-usando_Bruno-social-proof_28s</p>
+    <p class="ad__meta">Beltrán (hook) + Bruno (desarrollo) · 25–30s · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> El test directo. El clip 13s V2 tuvo el CTR más alto de la cuenta (5,13%) y el peor CPL ($11.813): frena el scroll pero no convierte porque NO desarrolla. Acá le pegamos atrás el desarrollo de Bruno. Si el CPL baja, probamos que el problema del 13s era la falta de desarrollo, no el hook. Bonus: Bruno ya aparece en el clip, el corte es casi invisible.</p>
+
+    <p class="clip-note"><strong>Clip a usar para el hook:</strong> Beltran_estas-usando-lebane_Testimonial_13s V2 — usar la interrupción (0:00–0:03).</p>
+
+    <div class="nota"><span class="nota__label">Nota set</span><p>Grupo Portland se nombra en la sección de autoridad: confirmar autorización antes de publicar. Briones OK.</p></div>
+
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–4s · Hook (clip)</td><td class="col-audio"><span class="speaker">BRUNO:</span> <span class="said">"¿Qué onda, estás usando Lebane?"</span> <span class="speaker">BELTRÁN:</span> <span class="said">"Sí, estamos usándolo en Grupo Briones."</span></td><td class="col-visual">Clip original: Bruno entra interrumpiendo a Beltrán en el golf. Edición picada, cero silencios.</td></tr>
+        <tr><td class="col-time">4–13s · Autoridad (Bruno)</td><td class="col-audio"><span class="speaker">BRUNO:</span> <span class="said">"Grupo Portland, Grupo Briones y más de 300 desarrolladoras ya operan con Lebane. ¿Por qué? Porque dejaron de enterarse tarde de los desvíos y de cerrar el mes a ciegas."</span></td><td class="col-visual">Corte directo a Bruno en el stand. Zócalo: <span class="screen-text">"Bruno — fundador de Lebane"</span>. Pantalla prendida. Logos PORTLAND · BRIONES en franja. Texto: <span class="screen-text">"+300 desarrolladoras"</span></td></tr>
+        <tr><td class="col-time">14–23s · Solución</td><td class="col-audio"><span class="said">"Centralizan obra, finanzas y avances en una sola plataforma. Y piden el status financiero por WhatsApp con números en tiempo real."</span> <span style="color:var(--color-dark-grey-70);font-size:13px;">(consulta a LENA corregida; avances quedan en el dashboard)</span></td><td class="col-visual">Celular en mano. <span class="screen-text">Split screen</span>: Bruno / app + chat con Lena (consulta verificada).</td></tr>
+        <tr><td class="col-time">23–28s · CTA</td><td class="col-audio"><span class="said">"Si los que mueven el mercado ya lo están usando, ¿por qué vos no? Apretá el botón y mirá cómo funciona."</span></td><td class="col-visual">Plano más abierto. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>Beltrán, de Grupo Briones, ya usa Lebane. Y no es el único: Grupo Portland y más de 300 desarrolladoras controlan sus números en tiempo real con la plataforma. Centralizan obra, finanzas y avances, y le piden a Lena por WhatsApp lo que necesiten. Si los que mueven el mercado ya lo usan, ¿por qué vos no?</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
+  </article>
+
+  <!-- ===================== HÍBRIDO 3 ===================== -->
+  <article class="ad ad--hybrid">
+    <span class="ad__num">Híbrido 3</span>
+    <h2 class="ad__title">Testimonial completo de Beltrán + cierre de Bruno</h2>
+    <p class="ad__naming">HIB_Beltran-facilita-datos-full_Bruno-cierre_24s</p>
+    <p class="ad__meta">Beltrán (hook) + Bruno (desarrollo) · ~28s (17s clip + cierre) · vertical 9:16 · instant form → landing</p>
+    <p class="ad__why"><strong>Por qué este ad:</strong> El testimonial "facilita-datos" se sostiene solo: no le falta desarrollo, le falta cierre y empuje al botón. Se corre entero y Bruno lo capitaliza apoyándose en los nombres fuertes. Es la pieza más barata de producir (un clip ya filmado + una línea de Bruno).</p>
+
+    <p class="clip-note"><strong>Clip a usar:</strong> Beltran_facilita-datos_Testimonial_17s — se usa el video COMPLETO (0:00–0:17), sin cortes internos.</p>
+
+    <div class="nota"><span class="nota__label">Nota set</span><p>Grupo Portland se nombra en el cierre: confirmar autorización antes de publicar. Briones OK.</p></div>
+
+    <table class="shot-table">
+      <thead><tr><th class="col-time">Tiempo</th><th>Audio (lo que dice)</th><th>Visual / Edición</th></tr></thead>
+      <tbody>
+        <tr><td class="col-time">0–17s · Testimonial completo (Beltrán)</td><td class="col-audio"><span class="speaker">BELTRÁN:</span> <span class="said">(video completo, sin editar) — cómo Lebane le facilita los datos y le simplifica el día a día.</span></td><td class="col-visual">Clip original de Beltrán en el campo de golf, íntegro. Subtítulos dinámicos sobre el clip.</td></tr>
+        <tr><td class="col-time">17–28s · Cierre + CTA (Bruno)</td><td class="col-audio"><span class="speaker">BRUNO:</span> <span class="said">"Las mejores constructoras y desarrolladoras, como Grupo Briones y Grupo Portland, ya usan Lebane para tener todos sus datos al alcance de la mano. Si manejás obras o desarrollos, apretá el botón y mirá cómo funciona."</span></td><td class="col-visual">Corte a Bruno en el stand, plano cerrado. Zócalo: <span class="screen-text">"Bruno — fundador de Lebane"</span>. Pantalla prendida atrás. Logos BRIONES · PORTLAND entran al nombrarlos. Gesto hacia el botón.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ptext"><span class="ptext__label">Primary text</span><p>"Lebane me facilita los datos, lo tengo todo a mano." Lo dice Beltrán, de Grupo Briones. Las mejores constructoras y desarrolladoras —Briones, Portland y más de 300— ya tienen toda su operación en un solo lugar y al alcance de la mano desde WhatsApp con Lena. Si manejás obras o desarrollos, mirá cómo funciona.</p><p class="btn-form">Botón del form: <strong>"Registrarte" / "Más información"</strong></p></div>
+  </article>
+
+  <!-- ===================== ORDEN ===================== -->
+  <section class="order">
+    <span class="order__label">Orden sugerido para arrancar</span>
+    <p>Alineado con el OKR (Meta AR como workhorse de cierre): la tanda arranca con <strong>plata + prueba social + el hook más barato validado.</strong></p>
+    <h3>Primera tanda</h3>
+    <ul>
+      <li><strong>AD #7 (social proof) + AD #1 (margen ciego) + Híbrido #1</strong> — los que mejor aprovechan la voz de founder, el ganador validado y el hook más barato de la cuenta.</li>
+    </ul>
+    <h3>Después</h3>
+    <ul>
+      <li><strong>AD #5 (historia de origen)</strong> — molde nuevo, alto upside si rinde.</li>
+      <li><strong>AD #3, #4, #6</strong> — adaptan limpio. #4 va como test (ángulo operativo, no le cargues presupuesto).</li>
+      <li><strong>AD #2</strong> — el de mayor riesgo en voz de founder. Cuidar que no suene a "el del software te reta": priorizar Hook B o C.</li>
+      <li><strong>Híbrido #2</strong> — vale la pena por el aprendizaje (prueba si el 13s fallaba por falta de desarrollo). <strong>Híbrido #3</strong>, el más barato de producir.</li>
+    </ul>
+  </section>
 
   <footer class="doc-footer">
     <span>The Creative Lever</span>
-    <span>Machete de rodaje · Lebane</span>
+    <span>Machete de rodaje · Lebane · versión corregida</span>
   </footer>
 
 </div>
